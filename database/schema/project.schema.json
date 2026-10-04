@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project",
+  "description": "Schema definition for TRIONN showcase projects and case studies",
+  "type": "object",
+  "required": ["title", "slug", "year", "image", "category"],
+  "properties": {
+    "title": { "type": "string" },
+    "slug": { "type": "string" },
+    "subTitle": { "type": "string" },
+    "year": { "type": "string" },
+    "category": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "image": { "type": "string" },
+    "mobileImage": { "type": "string" },
+    "pos": { "type": "string", "enum": ["left", "right", "center"] },
+    "size": { "type": "string", "enum": ["large", "medium", "small"] },
+    "visibleInHome": { "type": "boolean" },
+    "buttonText": { "type": "string" },
+    "buttonUrl": { "type": "string" },
+    "tabs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "content"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "content": { "type": "string" }
+        }
+      }
+    },
+    "content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["image"],
+        "properties": {
+          "image": { "type": "string" },
+          "layout": { "type": "string" }
+        }
+      }
+    }
+  }
+}
