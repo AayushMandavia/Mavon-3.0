@@ -45,6 +45,7 @@ c:\Projects\Mavon\Trionn/
 │   │   ├── contact-popup.js         # Interactive contact modal & form dialog
 │   │   ├── cookie-banner.js         # Offline cookie consent banner
 │   │   ├── app-layout.js            # Main application layout wrapper
+│   │   ├── work-process.js          # Studio work process data & case metadata
 │   │   └── audio-player.js          # Web Audio synthesizer & sound controller
 │   ├── styles/                      # Modular stylesheets
 │   │   ├── main-styles.css          # Main Tailwind tokens, studio theme & typography

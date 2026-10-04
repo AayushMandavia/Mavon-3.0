@@ -36,14 +36,7 @@
         );
       let { pathname: t } = new URL(e.src),
         n = t.indexOf("/_next/");
-      if (-1 === n)
-        throw Object.defineProperty(
-          new r.InvariantError(
-            `Expected document.currentScript src to contain '/_next/'. Received ${e.src} instead.`,
-          ),
-          "__NEXT_ERROR_CODE",
-          { value: "E784", enumerable: !1, configurable: !0 },
-        );
+      if (-1 === n) return "";
       return t.slice(0, n);
     }
     ("function" == typeof n.default ||
