@@ -109,4 +109,31 @@ fs.mkdirSync(apiDir, { recursive: true });
 fs.copyFileSync(path.join(ROOT_DIR, 'src', 'data', 'projects.json'), path.join(apiDir, 'projects'));
 fs.copyFileSync(path.join(ROOT_DIR, 'src', 'data', 'projects.json'), path.join(apiDir, 'projects.json'));
 
-console.log('[BUILD] dist/ created with complete static showcase assets for Vercel.');
+// 7. Copy vercel.json to dist
+if (fs.existsSync(path.join(ROOT_DIR, 'vercel.json'))) {
+  fs.copyFileSync(path.join(ROOT_DIR, 'vercel.json'), path.join(DIST_DIR, 'vercel.json'));
+}
+
+// 8. Generate physical static HTML files for all routes
+const htmlContent = fs.readFileSync(path.join(ROOT_DIR, 'public', 'index.html'), 'utf8');
+
+const staticRoutes = ['work', 'services', 'about', 'contact', 'mavon-story'];
+staticRoutes.forEach(route => {
+  const rDir = path.join(DIST_DIR, route);
+  fs.mkdirSync(rDir, { recursive: true });
+  fs.writeFileSync(path.join(rDir, 'index.html'), htmlContent, 'utf8');
+});
+
+// Also create work/[slug] for each of the 15 projects
+const projects = require(path.join(ROOT_DIR, 'src', 'data', 'projects.json'));
+projects.forEach(p => {
+  if (p.slug) {
+    const slugDir = path.join(DIST_DIR, 'work', p.slug);
+    fs.mkdirSync(slugDir, { recursive: true });
+    fs.writeFileSync(path.join(slugDir, 'index.html'), htmlContent, 'utf8');
+  }
+});
+
+console.log('[BUILD] dist/ created with complete static showcase assets & all static route entrypoints for Vercel.');
+
+
