@@ -159,19 +159,21 @@
                 if (url && url.startsWith("#")) {
                   let isHome = window.location.pathname === "/" || window.location.pathname === "/work";
                   if (isHome) {
-                    if (url === "#contact" || url === "#contact-section") {
-                      let el = document.querySelector("#contact-section") || document.querySelector("#contact");
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
-                      setTimeout(() => { h(); }, 400);
+                    if (url === "#contact" || url === "#contact-section" || url === "#site-footer") {
+                      let el = document.querySelector("#site-footer") || document.querySelector("#contact-section") || document.querySelector("#contact");
+                      if (el) {
+                        window.dispatchEvent(new CustomEvent("trionn-scroll-to", { detail: { target: "#site-footer" } }));
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
                     } else {
                       let el = document.querySelector(url);
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                      if (el) {
+                        window.dispatchEvent(new CustomEvent("trionn-scroll-to", { detail: { target: url } }));
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
                     }
                   } else {
-                    window.location.href = "/" + url;
-                    if (url === "#contact" || url === "#contact-section") {
-                      setTimeout(() => { h(); }, 600);
-                    }
+                    window.location.href = "/" + (url === "#contact" || url === "#contact-section" ? "#site-footer" : url);
                   }
                 }
               },
@@ -776,15 +778,17 @@
                             (0, t.jsx)("button", {
                               type: "button",
                               onClick: () => {
-                                if (!c) return void h();
-                                d(!1);
-                                let e = C.current;
-                                (e?.timeScale(1.75).reverse(),
-                                  T.current && clearTimeout(T.current),
-                                  (T.current = setTimeout(
-                                    h,
-                                    e ? (e.time() / 1.75) * 1e3 : 0,
-                                  )));
+                                if (c) {
+                                  d(!1);
+                                  C.current?.timeScale(1.75).reverse();
+                                }
+                                let footer = document.querySelector("#site-footer") || document.querySelector("#contact-section");
+                                if (footer) {
+                                  window.dispatchEvent(new CustomEvent("trionn-scroll-to", { detail: { target: "#site-footer" } }));
+                                  footer.scrollIntoView({ behavior: "smooth", block: "start" });
+                                } else {
+                                  window.location.href = "/#site-footer";
+                                }
                               },
                               className:
                                 "transition-all duration-300 title pt-1.5 pb-2 px-4 rounded-full bg-white border border-white group hover:bg-white/80 hover:border-white/80 relative z-50 cursor-pointer",
@@ -1765,7 +1769,6 @@
             ? null
             : (0, t.jsx)(l, {
                 children:
-                  e &&
                   (0, t.jsxs)("footer", {
                     id: "site-footer",
                     className:
@@ -2118,10 +2121,20 @@
                 u && "idle" === h
                   ? ((document.documentElement.style.overflow = ""),
                     (document.body.style.overflow = ""),
-                    i.current?.lenis &&
-                      (i.current.lenis.start(),
-                      i.current.lenis.scrollTo(0, { immediate: !0 })),
-                    window.scrollTo(0, 0))
+                                        i.current?.lenis && i.current.lenis.start(),
+                    (() => {
+                      let hash = window.location.hash || (window.location.pathname === "/contact" ? "#site-footer" : "");
+                      if (hash) {
+                        let target = document.querySelector(hash) || document.querySelector("#site-footer");
+                        if (target) {
+                          if (i.current?.lenis) i.current.lenis.scrollTo(target, { duration: 1.2 });
+                          else target.scrollIntoView({ behavior: "smooth" });
+                          return;
+                        }
+                      }
+                      i.current?.lenis && i.current.lenis.scrollTo(0, { immediate: !0 });
+                      window.scrollTo(0, 0);
+                    })())
                   : ((document.documentElement.style.overflow = "hidden"),
                     (document.body.style.overflow = "hidden"),
                     i.current?.lenis?.stop(),
@@ -2137,6 +2150,7 @@
             }, [u, h]),
             (0, o.useEffect)(() => {
               let e = i.current?.lenis;
+              if (e) window.__lenis = e;
               e && (u && "idle" === h ? e.start() : e.stop());
             }, [u, h]),
             (0, o.useEffect)(() => {
@@ -2156,9 +2170,16 @@
               );
             }, []),
             (0, o.useLayoutEffect)(() => {
-              (i.current?.lenis &&
-                i.current.lenis.scrollTo(0, { immediate: !0 }),
-                window.scrollTo(0, 0));
+              let hash = window.location.hash || (window.location.pathname === "/contact" ? "#site-footer" : "");
+              if (hash) {
+                let target = document.querySelector(hash) || document.querySelector("#site-footer");
+                if (target) {
+                  if (i.current?.lenis) i.current.lenis.scrollTo(target, { duration: 1.2 });
+                  else target.scrollIntoView({ behavior: "smooth" });
+                  return;
+                }
+              }
+              (i.current?.lenis && i.current.lenis.scrollTo(0, { immediate: !0 }), window.scrollTo(0, 0));
             }, [d]),
             (0, o.useEffect)(() => {
               let e = () => {

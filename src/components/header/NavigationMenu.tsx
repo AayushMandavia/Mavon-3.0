@@ -33,7 +33,7 @@ export function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
             { label: "Work", href: "#projects-grid", active: true },
             { label: "Services", href: "#projects-grid" },
             { label: "About", href: "#page-header" },
-            { label: "Contact", href: "#contact-section" },
+            { label: "Contact", href: "#site-footer" },
           ].map((item, idx) => (
             <Link
               key={idx}

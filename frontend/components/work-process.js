@@ -361,7 +361,7 @@
         { title: "Work", url: "#projects-grid" },
         { title: "Services", url: "#projects-grid" },
         { title: "About", url: "#page-header" },
-        { title: "Contact", url: "#contact-section" },
+        { title: "Contact", url: "#site-footer" },
       ],
       "partnersLogo",
       0,

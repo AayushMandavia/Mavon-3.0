@@ -2301,6 +2301,15 @@
                   children: [
                     (0, t.jsx)("div", {
                       id: "contact-btn",
+                      onClick: (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        let footer = document.querySelector("#site-footer");
+                        if (footer) {
+                          window.dispatchEvent(new CustomEvent("trionn-scroll-to", { detail: { target: "#site-footer" } }));
+                          footer.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }
+                      },
                       children: (0, t.jsx)(d.ContactCTA, {
                         text: "Contact Us",
                         styleVars: { buttonWrapperColor: "#D8D8D8" },

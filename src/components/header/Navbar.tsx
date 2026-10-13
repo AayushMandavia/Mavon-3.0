@@ -49,7 +49,7 @@ export function Navbar() {
             About
           </a>
           <a
-            href="#contact-section"
+            href="#site-footer"
             className="hover:text-white transition-colors py-1"
           >
             Contact
