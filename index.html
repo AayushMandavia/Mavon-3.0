@@ -390,7 +390,9 @@
 
 
 <style id="mavon-case-study-css">
-  #project-case-study-overlay {
+  /* 1. Modal Overlay Container */
+  #project-case-study-overlay,
+  #project-detail-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -409,13 +411,19 @@
     transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     font-family: inherit;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
   }
-  #project-case-study-overlay.is-active {
+  #project-case-study-overlay.is-active,
+  #project-detail-overlay.is-active {
     display: block !important;
     opacity: 1 !important;
     pointer-events: auto !important;
   }
-  .cs-topbar {
+
+  /* 2. Topbar Navigation */
+  .cs-topbar,
+  .cs-header {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -423,17 +431,20 @@
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 1.1rem clamp(1.5rem, 4vw, 4rem);
+    padding: 0.9rem clamp(1rem, 3.5vw, 3rem);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .cs-back-btn {
+  .cs-back-btn,
+  .cs-back-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.75);
     cursor: pointer;
@@ -446,31 +457,35 @@
     border-radius: 4px;
     text-decoration: none;
   }
-  .cs-back-btn:hover {
+  .cs-back-btn:hover,
+  .cs-back-link:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.06);
   }
   .cs-topbar-actions {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
   }
-  .cs-topbar-live-btn {
+  .cs-topbar-live-btn,
+  .cs-header-live-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.55rem 1.35rem;
+    gap: 0.45rem;
+    padding: 0.5rem 1.15rem;
     border-radius: 9999px;
     border: 1px solid rgba(229, 168, 59, 0.5);
     background: rgba(229, 168, 59, 0.1);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
     color: #E5A83B;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.2s ease;
+    white-space: nowrap;
   }
-  .cs-topbar-live-btn:hover {
+  .cs-topbar-live-btn:hover,
+  .cs-header-live-btn:hover {
     background: #E5A83B;
     color: #000000;
     box-shadow: 0 0 20px rgba(229, 168, 59, 0.4);
@@ -479,8 +494,8 @@
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: rgba(255, 255, 255, 0.8);
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.15rem;
+    height: 2.15rem;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -488,117 +503,175 @@
     justify-content: center;
     font-size: 0.85rem;
     transition: all 0.2s ease;
+    flex-shrink: 0;
   }
   .cs-close-btn:hover {
     background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
     transform: scale(1.05);
   }
-  .cs-content-wrap {
-    max-width: 1720px;
+
+  /* 3. Main Content Container & Grid */
+  .cs-content-wrap,
+  .cs-container {
+    max-width: 1560px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 clamp(1.5rem, 4vw, 4rem) 6rem;
+    padding: 0 clamp(1rem, 3.5vw, 3.5rem) 5rem;
     box-sizing: border-box;
   }
-  .cs-layout-grid {
+  .cs-layout-grid,
+  .cs-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 100%;
+    gap: 2.5rem;
     align-items: start;
     width: 100%;
+    box-sizing: border-box;
   }
+
+  /* Desktop 2-column Layout: 1024px and up */
   @media (min-width: 1024px) {
-    .cs-layout-grid {
-      grid-template-columns: 38% 62%;
-      gap: clamp(3rem, 5vw, 6rem);
+    .cs-layout-grid,
+    .cs-grid {
+      grid-template-columns: minmax(320px, 390px) minmax(0, 1fr);
+      gap: clamp(2rem, 3.5vw, 4.5rem);
     }
-    .cs-col-left {
+    .cs-col-left,
+    .cs-left-sticky {
       position: sticky;
       top: 5rem;
-      max-height: calc(100vh - 5rem);
-      overflow-y: auto;
-      padding: 3rem 0;
+      align-self: start;
+      padding: 2.5rem 0 3rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      scrollbar-width: none;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      overflow: visible;
+      box-sizing: border-box;
     }
-    .cs-col-left::-webkit-scrollbar {
-      display: none;
-    }
-    .cs-col-right {
-      padding: 3rem 0;
+    .cs-col-right,
+    .cs-right-scroll {
+      padding: 2.5rem 0 3rem;
       display: flex;
       flex-direction: column;
-      gap: 3.5rem;
+      gap: 3rem;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
     }
   }
-  .cs-brand-tag {
+
+  /* Mobile / Tablet (< 1024px) */
+  @media (max-width: 1023.98px) {
+    .cs-col-left,
+    .cs-left-sticky {
+      position: static;
+      padding: 1.5rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .cs-col-right,
+    .cs-right-scroll {
+      padding: 0.5rem 0 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+  }
+
+  /* Unstick on short desktop screens */
+  @media (min-width: 1024px) and (max-height: 560px) {
+    .cs-col-left,
+    .cs-left-sticky {
+      position: static !important;
+      padding: 1.5rem 0 1rem;
+    }
+  }
+
+  /* 4. Left Column Typography & Elements */
+  .cs-brand-tag,
+  .cs-breadcrumb {
     font-size: 0.72rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #E5A83B;
     font-weight: 600;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  .cs-proj-title {
-    font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+  .cs-proj-title,
+  .cs-title {
+    font-size: clamp(2.2rem, 3.8vw, 3.6rem);
     font-weight: 500;
     line-height: 1.05;
     letter-spacing: -0.03em;
     color: #ffffff;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.85rem 0;
+    word-break: break-word;
   }
-  .cs-proj-subtitle {
-    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  .cs-proj-subtitle,
+  .cs-subtitle {
+    font-size: clamp(0.92rem, 1.15vw, 1.1rem);
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.65);
     font-weight: 300;
-    margin: 0 0 1.75rem 0;
+    margin: 0 0 1.25rem 0;
   }
-  .cs-proj-categories {
+  .cs-proj-categories,
+  .cs-categories {
     list-style: none;
     padding: 0;
-    margin: 0 0 2.5rem 0;
+    margin: 0 0 1.75rem 0;
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.85rem;
   }
-  .cs-proj-categories li {
-    font-size: 0.82rem;
+  .cs-proj-categories li,
+  .cs-categories li {
+    font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.02em;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
-  .cs-proj-categories li::before {
-    content: "·";
-    font-size: 1.2rem;
-    line-height: 1;
-    color: rgba(255, 255, 255, 0.5);
+  .cs-tabs-box,
+  .cs-tabs-section {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .cs-tabs-box {
-    margin-bottom: 2rem;
-  }
-  .cs-tabs-nav {
+  .cs-tabs-nav,
+  .cs-tabs-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 0.75rem;
-    margin-bottom: 1.25rem;
+    padding-bottom: 0.65rem;
+    margin-bottom: 1rem;
   }
-  .cs-tab-link {
+  .cs-tab-link,
+  .cs-tab-btn {
     background: transparent;
     border: none;
     padding: 0 0 0.5rem 0;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
@@ -606,82 +679,104 @@
     border-bottom: 2px solid transparent;
     transition: all 0.2s ease;
   }
-  .cs-tab-link:hover {
+  .cs-tab-link:hover,
+  .cs-tab-btn:hover {
     color: #ffffff;
   }
-  .cs-tab-link.active {
+  .cs-tab-link.active,
+  .cs-tab-btn.active {
     color: #ffffff;
-    border-bottom-color: #ffffff;
+    border-bottom-color: #E5A83B;
   }
-  .cs-tab-pane {
-    font-size: clamp(0.9rem, 1.1vw, 1rem);
-    line-height: 1.7;
+  .cs-tab-pane,
+  .cs-tab-content {
+    font-size: clamp(0.88rem, 1.05vw, 0.98rem);
+    line-height: 1.65;
     color: rgba(255, 255, 255, 0.82);
     font-weight: 300;
-    min-height: 110px;
+    min-height: 90px;
   }
-  .cs-tab-pane ul {
-    margin: 0.5rem 0 0 1.25rem;
+  .cs-tab-pane ul,
+  .cs-tab-content ul {
+    margin: 0.4rem 0 0 1.2rem;
     padding: 0;
   }
-  .cs-tab-pane li {
-    margin-bottom: 0.4rem;
+  .cs-tab-pane li,
+  .cs-tab-content li {
+    margin-bottom: 0.35rem;
   }
-  .cs-bottom-actions {
+  .cs-bottom-actions,
+  .cs-actions-row {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding-top: 1.5rem;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    box-sizing: border-box;
   }
-  .cs-cta-gold {
+  .cs-cta-gold,
+  .cs-live-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    font-size: 0.82rem;
-    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     background: #E5A83B;
     color: #000000;
     text-decoration: none;
-    padding: 0.85rem 1.8rem;
+    padding: 0.8rem 1.8rem;
     border-radius: 9999px;
     font-weight: 700;
     transition: all 0.25s ease;
     box-shadow: 0 4px 20px rgba(229, 168, 59, 0.25);
     width: fit-content;
   }
-  .cs-cta-gold:hover {
+  @media (max-width: 640px) {
+    .cs-cta-gold,
+    .cs-live-cta {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .cs-cta-gold:hover,
+  .cs-live-cta:hover {
     background: #ffffff;
     color: #000000;
     box-shadow: 0 6px 25px rgba(255, 255, 255, 0.35);
     transform: translateY(-2px);
   }
-  .cs-prev-next-controls {
+  .cs-prev-next-controls,
+  .cs-nav-btns {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.5);
   }
-  .cs-nav-ctrl {
+  .cs-nav-ctrl,
+  .cs-nav-btn {
     background: transparent;
     border: none;
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     font-family: inherit;
     padding: 0.35rem 0;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     transition: color 0.2s ease;
   }
-  .cs-nav-ctrl:hover {
+  .cs-nav-ctrl:hover,
+  .cs-nav-btn:hover {
     color: #E5A83B;
   }
+
+  /* 5. Right Column Cards (Zero Cutoff & Pure Responsive Sizing) */
   .cs-gallery-card {
     border-radius: 1.25rem;
     overflow: hidden;
@@ -690,9 +785,13 @@
     box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
     transition: border-color 0.3s ease;
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
   .cs-gallery-card.hero {
-    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 120px -20px rgba(229, 168, 59, 0.18);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 100px -20px rgba(229, 168, 59, 0.18);
   }
   .cs-gallery-card:hover {
     border-color: rgba(229, 168, 59, 0.35);
@@ -704,11 +803,14 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
   }
   .cs-dot {
-    width: 0.65rem;
-    height: 0.65rem;
+    width: 0.62rem;
+    height: 0.62rem;
     border-radius: 50%;
+    flex-shrink: 0;
   }
   .cs-dot.red { background: #ff5f56; }
   .cs-dot.yellow { background: #ffbd2e; }
@@ -716,34 +818,42 @@
   .cs-url-bar {
     margin-left: 0.75rem;
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.45);
     letter-spacing: 0.04em;
     font-family: monospace;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    max-width: calc(100% - 60px);
   }
   .cs-gallery-img {
     width: 100%;
+    max-width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
   }
   .cs-gallery-dual {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     gap: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
   @media (min-width: 640px) {
     .cs-gallery-dual {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
   }
   .cs-feature-card {
-    padding: 2rem;
+    padding: clamp(1.25rem, 2.5vw, 2rem);
     border-radius: 1.25rem;
     background: #101216;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
   .cs-feature-card.gold-border {
     border-color: rgba(229, 168, 59, 0.25);
@@ -761,20 +871,20 @@
     color: #E5A83B;
   }
   .cs-feature-title {
-    font-size: 1.25rem;
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
     font-weight: 500;
     color: #ffffff;
     margin: 0 0 0.75rem 0;
   }
   .cs-feature-desc {
-    font-size: 0.88rem;
+    font-size: clamp(0.85rem, 1vw, 0.92rem);
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.65);
     margin: 0;
     font-weight: 300;
   }
   .cs-next-teaser {
-    padding: 2.5rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
     border-radius: 1.25rem;
     background: linear-gradient(135deg, #121419 0%, #1b160e 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -782,7 +892,11 @@
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.85rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
   .cs-next-teaser:hover {
     border-color: #E5A83B;
@@ -797,31 +911,64 @@
     font-weight: 600;
   }
   .cs-next-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
     font-weight: 500;
     color: #ffffff;
+    margin: 0;
   }
   .cs-next-sub {
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
     color: rgba(255, 255, 255, 0.6);
     font-weight: 300;
+    line-height: 1.5;
+    margin: 0;
   }
   .cs-next-thumb-wrap {
     width: 100%;
-    height: 240px;
+    aspect-ratio: 16 / 9;
+    max-height: 280px;
     border-radius: 0.75rem;
     overflow: hidden;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    background: #0d0f13;
   }
   .cs-next-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     transition: transform 0.5s ease;
+    display: block;
   }
   .cs-next-teaser:hover .cs-next-thumb {
-    transform: scale(1.05);
+    transform: scale(1.04);
+  }
+
+  /* 6. General Site Responsiveness Enhancements */
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  @media (max-width: 1024px) {
+    .project-card {
+      width: min(88%, 640px) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  }
+  @media (max-width: 640px) {
+    .project-card {
+      width: 92% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    #logo-circle,
+    #logo-svg-wrap {
+      width: clamp(200px, 70vw, 260px) !important;
+      height: clamp(200px, 70vw, 260px) !important;
+    }
   }
 </style>
 
@@ -1116,6 +1263,17 @@
       }
     }
   }, true); // CAPTURE!
+
+  // Scroll sync: Ensure scrolling over the left sticky column or anywhere inside the project scrolls the entire case study and gallery
+  window.addEventListener('wheel', function(e) {
+    const overlay = document.getElementById('project-case-study-overlay') || document.getElementById('project-detail-overlay');
+    if (!overlay || !overlay.classList.contains('is-active')) return;
+    const isLeftOrTop = e.target.closest('.cs-col-left, .cs-topbar, .cs-left-sticky, .cs-header');
+    if (isLeftOrTop) {
+      e.preventDefault();
+      overlay.scrollBy({ top: e.deltaY, behavior: 'auto' });
+    }
+  }, { passive: false });
 
   // Check URL on load and popstate
   function checkUrl() {

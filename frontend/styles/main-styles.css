@@ -5329,16 +5329,23 @@ body.is-404 {
   width: 100%;
   display: block;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .project-card {
-    width: 90% !important;
+    width: min(88%, 640px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+@media (max-width: 640px) {
+  .project-card {
+    width: 92% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
   #logo-circle,
   #logo-svg-wrap {
-    width: 250px;
-    height: 250px;
+    width: clamp(200px, 70vw, 250px) !important;
+    height: clamp(200px, 70vw, 250px) !important;
   }
 }
 .is-hidden {
