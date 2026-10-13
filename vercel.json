@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/api/projects", "destination": "/src/data/projects.json" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/work", "destination": "/index.html" },
+    { "source": "/work/:slug*", "destination": "/index.html" },
+    { "source": "/services", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/mavon-story", "destination": "/index.html" }
+  ]
+}
