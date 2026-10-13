@@ -2759,6 +2759,7 @@
       rq = !1,
       rK = Error(u(519));
     function rX(e) {
+      console.warn("[HYDRATION_MISMATCH]", e?.type, e?.stateNode?.textContent?.slice(0, 80));
       var t = Error(
         u(
           418,
@@ -2768,7 +2769,7 @@
           "",
         ),
       );
-      throw (r1(rC(t, e)), rK);
+      try { r1(rC(t, e)); } catch(err){} return;
     }
     function rY(e) {
       var t = e.stateNode,

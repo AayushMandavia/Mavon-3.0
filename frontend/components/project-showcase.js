@@ -155,8 +155,28 @@
             );
           }, []));
         let [R, Y] = (0, r.useState)(!1),
-          k = (0, m.useTransitionReady)();
+          k = (0, m.useTransitionReady)(),
+          [activeSlug, setActiveSlug] = (0, r.useState)(null),
+          [activeTab, setActiveTab] = (0, r.useState)("challenge");
         return (
+          (0, r.useEffect)(() => {
+            let onPop = () => {
+              let p = window.location.pathname;
+              if (p.startsWith("/work/")) {
+                let s = p.replace(/^\/work\/?/, "").split("?")[0].split("#")[0];
+                if (s && g.projects.some((pr) => pr.slug === s)) {
+                  setActiveSlug(s);
+                  document.body.style.overflow = "hidden";
+                  return;
+                }
+              }
+              setActiveSlug(null);
+              document.body.style.overflow = "";
+            };
+            window.addEventListener("popstate", onPop);
+            onPop();
+            return () => window.removeEventListener("popstate", onPop);
+          }, []),
           (0, r.useEffect)(() => {
             if (!k) return;
             let e = document.querySelector(".site-footer");
@@ -256,50 +276,53 @@
               function I(e) {
                 return Array.from({ length: 28 }, (t, o) => {
                   let r = 3.14159 * o + 1.618;
-                  if ("top-down" === e) {
-                    let e = (o + 0.5) * 20.928571428571427;
+                  if ("t1-bottom-up" === e || "bottom-up" === e) {
+                    let y = 475 - (o + 0.5) * (400 / 28);
+                    let h = 400 / 28 + 2;
                     return {
-                      path: B(e, r),
-                      delay: 0.030370370370370374 * o,
+                      path: B(y, r),
+                      delay: 0.026 * o,
                       fillX: -10,
-                      fillY: e - 10.464285714285714,
+                      fillY: y,
                       fillW: 600,
-                      fillH: 21.928571428571427,
+                      fillH: h,
                       axis: "h",
                     };
                   }
-                  if ("bottom-up" === e) {
-                    let e = 586 - (o + 0.5) * 20.928571428571427;
+                  if ("t2-left-right" === e || "left-right" === e) {
+                    let n = 260 + (o + 0.5) * (205 / 28);
+                    let w = 205 / 28 + 2;
                     return {
-                      path: B(e, r),
-                      delay: 0.030370370370370374 * o,
-                      fillX: -10,
-                      fillY: e,
-                      fillW: 600,
-                      fillH: 21.928571428571427,
-                      axis: "h",
+                      path: (function (e, t) {
+                        let o = 1.2 + ((0.37 * t) % 0.8),
+                          r = 8 + ((0.61 * t) % 14),
+                          n = (1.7 * t) % (2 * Math.PI),
+                          i = `M ${e.toFixed(1)} -10`;
+                        for (let t = 1; t <= 60; t++) {
+                          let l = (t / 60) * 606 - 10,
+                            a = r * Math.sin((l / 586) * o * Math.PI + n);
+                          i += ` L ${(e + a).toFixed(1)} ${l.toFixed(1)}`;
+                        }
+                        return i;
+                      })(n, r),
+                      delay: 0.026 * o,
+                      fillX: n - w / 2,
+                      fillY: -10,
+                      fillW: w,
+                      fillH: 610,
+                      axis: "v",
                     };
                   }
-                  let n = (o + 0.5) * 20.642857142857142;
+                  let y = 190 + (o + 0.5) * (310 / 28);
+                  let h = 310 / 28 + 2;
                   return {
-                    path: (function (e, t) {
-                      let o = 1.2 + ((0.37 * t) % 0.8),
-                        r = 8 + ((0.61 * t) % 14),
-                        n = (1.7 * t) % (2 * Math.PI),
-                        i = `M ${e.toFixed(1)} -10`;
-                      for (let t = 1; t <= 60; t++) {
-                        let l = (t / 60) * 606 - 10,
-                          a = r * Math.sin((l / 586) * o * Math.PI + n);
-                        i += ` L ${(e + a).toFixed(1)} ${l.toFixed(1)}`;
-                      }
-                      return i;
-                    })(n, r),
-                    delay: 0.030370370370370374 * o,
-                    fillX: n - 10.321428571428571,
-                    fillY: -10,
-                    fillW: 21.642857142857142,
-                    fillH: 610,
-                    axis: "v",
+                    path: B(y, r),
+                    delay: 0.026 * o,
+                    fillX: -10,
+                    fillY: y,
+                    fillW: 600,
+                    fillH: h,
+                    axis: "h",
                   };
                 });
               }
@@ -315,14 +338,14 @@
                           ((e.style.opacity = "0"),
                           (e.style.transformOrigin = "50% 50%"));
                       }),
-                      (O = I("bottom-up")),
-                      ($ = I("left-right")),
-                      (D = I("top-down")),
+                      (O = I("t1-bottom-up")),
+                      ($ = I("t2-left-right")),
+                      (D = I("t3-top-down")),
                       (N = !0)),
                     e)
                   : null;
               }
-              function G(e, t, o, n) {
+              function G(e, t, o, n, c = "#FFFFFF", sc = "#FFFFFF") {
                 if (!e || !t) return;
                 if (n <= 0) {
                   ((e.innerHTML = ""), (t.innerHTML = ""));
@@ -336,12 +359,12 @@
                   let o = a(r((n - e.delay) / 0.252));
                   o > 0 &&
                     ("h" === e.axis
-                      ? (l += `<rect x="${e.fillX}" y="${e.fillY.toFixed(1)}" width="${e.fillW}" height="${(e.fillH * o).toFixed(1)}" fill="#D0D0D0"/>`)
-                      : (l += `<rect x="${e.fillX.toFixed(1)}" y="-10" width="${(e.fillW * o).toFixed(1)}" height="610" fill="#D0D0D0"/>`));
+                      ? (l += `<rect x="${e.fillX}" y="${e.fillY.toFixed(1)}" width="${e.fillW}" height="${(e.fillH * o + 2).toFixed(1)}" fill="${c}"/>`)
+                      : (l += `<rect x="${e.fillX.toFixed(1)}" y="-10" width="${(e.fillW * o + 2).toFixed(1)}" height="610" fill="${c}"/>`));
                   let s = Math.max(0, 1 - a(r((n - e.delay) / 0.396)));
                   if (s > 0.01) {
                     let o = (1 - a(t)).toFixed(4);
-                    i += `<path d="${e.path}" fill="none" stroke="#303640" stroke-width="1.5" stroke-opacity="0.7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${o}" opacity="${s.toFixed(3)}"/>`;
+                    i += `<path d="${e.path}" fill="none" stroke="${sc}" stroke-width="1.5" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${o}" opacity="${s.toFixed(3)}"/>`;
                   }
                 }),
                   (t.innerHTML = l),
@@ -422,9 +445,9 @@
                           ((e.style.opacity = "1"),
                           (e.style.transform = "translate(0,0) scale(1)"));
                       }),
-                      G(o.lg1, o.pg1, O || I("bottom-up"), e),
-                      G(o.lg2, o.pg2, $ || I("left-right"), e),
-                      G(o.lg3, o.pg3, D || I("top-down"), e)));
+                      G(o.lg1, o.pg1, O || I("t1-bottom-up"), e, "#FFFFFF", "#FFFFFF"),
+                      G(o.lg2, o.pg2, $ || I("t2-left-right"), e, "#E5A83B", "#FAD261"),
+                      G(o.lg3, o.pg3, D || I("t3-top-down"), e, "#E5A83B", "#FAD261")));
                 }
               }
               function K(e) {
@@ -2076,18 +2099,18 @@
                                       children: (0, t.jsx)("path", {
                                         fillRule: "evenodd",
                                         clipRule: "evenodd",
-                                        d: "M269.431 257.019C268.708 258.271 268.717 259.816 269.455 261.06L286.98 290.611C288.54 293.241 292.355 293.219 293.885 290.57L327.284 232.72C328.825 230.052 332.677 230.054 334.215 232.724L425.279 390.875C425.982 392.095 427.275 392.856 428.682 392.878L463.65 393.434C466.755 393.483 468.73 390.129 467.18 387.438L353.861 190.681C353.148 189.444 353.149 187.921 353.863 186.685L388.264 127.101C388.965 125.885 388.979 124.391 388.299 123.163L371.368 92.5833C369.861 89.8615 365.96 89.8265 364.404 92.5208L269.431 257.019Z",
+                                        d: "M47.77 79.8L43.25 83.57L42.49 456.39L43.25 466.93L45.51 469.95L49.27 470.7L87.68 439.82L121.58 409.69L123.08 262.07L228.53 362.99L234.55 361.49L290.29 313.28L291.04 307.26L95.97 121.22L52.28 81.31Z",
                                       }),
                                     }),
                                   }),
                                   (0, t.jsx)("path", {
                                     fillRule: "evenodd",
                                     clipRule: "evenodd",
-                                    d: "M269.431 257.019C268.708 258.271 268.717 259.816 269.455 261.06L286.98 290.611C288.54 293.241 292.355 293.219 293.885 290.57L327.284 232.72C328.825 230.052 332.677 230.054 334.215 232.724L425.279 390.875C425.982 392.095 427.275 392.856 428.682 392.878L463.65 393.434C466.755 393.483 468.73 390.129 467.18 387.438L353.861 190.681C353.148 189.444 353.149 187.921 353.863 186.685L388.264 127.101C388.965 125.885 388.979 124.391 388.299 123.163L371.368 92.5833C369.861 89.8615 365.96 89.8265 364.404 92.5208L269.431 257.019Z",
+                                    d: "M47.77 79.8L43.25 83.57L42.49 456.39L43.25 466.93L45.51 469.95L49.27 470.7L87.68 439.82L121.58 409.69L123.08 262.07L228.53 362.99L234.55 361.49L290.29 313.28L291.04 307.26L95.97 121.22L52.28 81.31Z",
                                     fill: "none",
-                                    stroke: "#303640",
+                                    stroke: "#FFFFFF",
                                     strokeWidth: "1.5",
-                                    strokeOpacity: "0.7",
+                                    strokeOpacity: "0.85",
                                   }),
                                   (0, t.jsx)("g", {
                                     clipPath: "url(#clip1)",
@@ -2113,18 +2136,18 @@
                                       children: (0, t.jsx)("path", {
                                         fillRule: "evenodd",
                                         clipRule: "evenodd",
-                                        d: "M316.66 425.547C318.087 425.545 319.406 426.304 320.123 427.537L356.868 490.777C357.572 491.989 358.86 492.744 360.263 492.767L395.242 493.322C398.347 493.372 400.322 490.018 398.773 487.327L304.909 324.268C304.196 323.03 302.878 322.266 301.449 322.263L265.933 322.201C262.846 322.196 260.916 325.543 262.468 328.212L293.454 381.508C295.005 384.176 293.079 387.521 289.993 387.519L107.1 387.384C105.67 387.383 104.348 388.146 103.633 389.384L86.0729 419.792C84.532 422.461 86.4598 425.796 89.5411 425.793L316.66 425.547Z",
+                                        d: "M458.25 82.06L453.73 81.31L265.43 243.24L265.43 250.77L304.6 287.68L310.62 288.43L459.75 159.64L460.51 85.07Z",
                                       }),
                                     }),
                                   }),
                                   (0, t.jsx)("path", {
                                     fillRule: "evenodd",
                                     clipRule: "evenodd",
-                                    d: "M316.66 425.547C318.087 425.545 319.406 426.304 320.123 427.537L356.868 490.777C357.572 491.989 358.86 492.744 360.263 492.767L395.242 493.322C398.347 493.372 400.322 490.018 398.773 487.327L304.909 324.268C304.196 323.03 302.878 322.266 301.449 322.263L265.933 322.201C262.846 322.196 260.916 325.543 262.468 328.212L293.454 381.508C295.005 384.176 293.079 387.521 289.993 387.519L107.1 387.384C105.67 387.383 104.348 388.146 103.633 389.384L86.0729 419.792C84.532 422.461 86.4598 425.796 89.5411 425.793L316.66 425.547Z",
+                                    d: "M458.25 82.06L453.73 81.31L265.43 243.24L265.43 250.77L304.6 287.68L310.62 288.43L459.75 159.64L460.51 85.07Z",
                                     fill: "none",
-                                    stroke: "#303640",
+                                    stroke: "#E5A83B",
                                     strokeWidth: "1.5",
-                                    strokeOpacity: "0.7",
+                                    strokeOpacity: "0.9",
                                   }),
                                   (0, t.jsx)("g", {
                                     clipPath: "url(#clip2)",
@@ -2150,18 +2173,18 @@
                                       children: (0, t.jsx)("path", {
                                         fillRule: "evenodd",
                                         clipRule: "evenodd",
-                                        d: "M182.809 283.818C179.736 283.807 177.822 280.479 179.359 277.818L271.364 118.461C272.066 117.245 272.079 115.751 271.399 114.523L254.468 83.9432C252.961 81.2213 249.06 81.1863 247.504 83.8807L133.245 281.783C132.528 283.026 131.2 283.789 129.765 283.783L56.9478 283.499C55.5132 283.494 54.1855 284.257 53.4681 285.499L35.9048 315.92C34.3665 318.584 36.2864 321.915 39.363 321.92L229.336 322.201C230.767 322.203 232.091 321.441 232.806 320.201L250.222 290.036C251.759 287.375 249.845 284.047 246.771 284.036L182.809 283.818Z",
+                                        d: "M453.73 191.27L360.33 271.86L358.83 274.87L358.83 408.18L364.85 415.72L452.22 494.8L457.49 494.8L460.51 490.28L460.51 194.28L457.49 191.27Z",
                                       }),
                                     }),
                                   }),
                                   (0, t.jsx)("path", {
                                     fillRule: "evenodd",
                                     clipRule: "evenodd",
-                                    d: "M182.809 283.818C179.736 283.807 177.822 280.479 179.359 277.818L271.364 118.461C272.066 117.245 272.079 115.751 271.399 114.523L254.468 83.9432C252.961 81.2213 249.06 81.1863 247.504 83.8807L133.245 281.783C132.528 283.026 131.2 283.789 129.765 283.783L56.9478 283.499C55.5132 283.494 54.1855 284.257 53.4681 285.499L35.9048 315.92C34.3665 318.584 36.2864 321.915 39.363 321.92L229.336 322.201C230.767 322.203 232.091 321.441 232.806 320.201L250.222 290.036C251.759 287.375 249.845 284.047 246.771 284.036L182.809 283.818Z",
+                                    d: "M453.73 191.27L360.33 271.86L358.83 274.87L358.83 408.18L364.85 415.72L452.22 494.8L457.49 494.8L460.51 490.28L460.51 194.28L457.49 191.27Z",
                                     fill: "none",
-                                    stroke: "#303640",
+                                    stroke: "#E5A83B",
                                     strokeWidth: "1.5",
-                                    strokeOpacity: "0.7",
+                                    strokeOpacity: "0.9",
                                   }),
                                   (0, t.jsx)("g", {
                                     clipPath: "url(#clip3)",
@@ -2228,15 +2251,24 @@
                       className: "project-card",
                       "data-pos": e.pos,
                       "data-size": e.size,
+                      "data-slug": e.slug,
                       children: [
                         (0, t.jsx)("div", {
                           className:
                             "card-thumb overflow-hidden mb-6 rounded-sm relative",
-                          children: (0, t.jsx)(h.TransitionLink, {
+                          children: (0, t.jsx)("a", {
                             href: "#",
-                            className: "thumb-link",
+                            "data-slug": e.slug,
+                            onClick: (ev) => {
+                              ev.preventDefault();
+                              ev.stopPropagation();
+                              setActiveSlug(e.slug);
+                              setActiveTab("challenge");
+                              document.body.style.overflow = "hidden";
+                              history.pushState(null, "", "/work/" + e.slug);
+                            },
+                            className: "thumb-link cursor-pointer block",
                             "aria-label": `Open ${e.title}`,
-                            transitionLabel: e.title,
                             children: (0, t.jsx)("img", {
                               src: e.image,
                               alt: e.title,
@@ -2273,7 +2305,16 @@
                                   children: (0, t.jsx)(c.WordShiftButton, {
                                     text: "EXPLORE PROJECT",
                                     label: e.slug,
-                                    href: "#",
+                                    type: "button",
+                                    "data-slug": e.slug,
+                                    onClick: (ev) => {
+                                      ev.preventDefault();
+                                      ev.stopPropagation();
+                                      setActiveSlug(e.slug);
+                                      setActiveTab("challenge");
+                                      document.body.style.overflow = "hidden";
+                                      history.pushState(null, "", "/work/" + e.slug);
+                                    },
                                     styleVars: {
                                       buttonWrapperColor: "#D8D8D8",
                                     },
@@ -2319,6 +2360,243 @@
                     iconColor: "#D8D8D8",
                   }),
                 }),
+              (() => {
+                if (!activeSlug) return null;
+                let activeProject = g.projects.find((p) => p.slug === activeSlug);
+                if (!activeProject) return null;
+                let idx = g.projects.findIndex((p) => p.slug === activeSlug);
+                let prevProject = g.projects[(idx - 1 + g.projects.length) % g.projects.length];
+                let nextProject = g.projects[(idx + 1) % g.projects.length];
+                let prevSlug = prevProject.slug;
+                let nextSlug = nextProject.slug;
+                let closeModal = () => {
+                  setActiveSlug(null);
+                  document.body.style.overflow = "";
+                  if (window.location.pathname !== "/work") history.pushState(null, "", "/work");
+                };
+                let navigateTo = (slug) => {
+                  setActiveSlug(slug);
+                  setActiveTab("challenge");
+                  history.pushState(null, "", "/work/" + slug);
+                  let overlay = document.getElementById("project-detail-overlay");
+                  if (overlay) overlay.scrollTo({ top: 0, behavior: "smooth" });
+                };
+                let challengeContent = (activeProject.tabs || []).find((tb) => tb.id === "challenge")?.content || "";
+                let approachContent = (activeProject.tabs || []).find((tb) => tb.id === "approach")?.content || "";
+                let outcomeContent = (activeProject.tabs || []).find((tb) => tb.id === "outcome")?.content || "";
+                let currentTabContent = (activeProject.tabs || []).find((tb) => tb.id === activeTab)?.content || (activeProject.tabs && activeProject.tabs[0]?.content) || "";
+                return (0, t.jsxs)("div", {
+                  id: "project-detail-overlay",
+                  className: "is-active",
+                  children: [
+                    (0, t.jsxs)("div", {
+                      className: "cs-header",
+                      children: [
+                        (0, t.jsxs)("button", {
+                          type: "button",
+                          className: "cs-back-link",
+                          onClick: closeModal,
+                          children: [
+                            (0, t.jsx)("span", { children: "←" }),
+                            (0, t.jsx)("span", { children: "BACK TO WORK" })
+                          ]
+                        }),
+                        (0, t.jsxs)("div", {
+                          style: { display: "flex", alignItems: "center", gap: "1rem" },
+                          children: [
+                            (0, t.jsxs)("a", {
+                              href: activeProject.buttonUrl,
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                              className: "cs-header-live-btn",
+                              children: [
+                                (0, t.jsx)("span", { children: "LIVE SITE" }),
+                                (0, t.jsx)("span", { children: "↗" })
+                              ]
+                            }),
+                            (0, t.jsx)("button", {
+                              type: "button",
+                              className: "cs-close-btn",
+                              onClick: closeModal,
+                              "aria-label": "Close",
+                              children: "✕"
+                            })
+                          ]
+                        })
+                      ]
+                    }),
+                    (0, t.jsx)("div", {
+                      className: "cs-container",
+                      children: (0, t.jsxs)("div", {
+                        className: "cs-grid",
+                        children: [
+                          /* LEFT STICKY COLUMN */
+                          (0, t.jsxs)("div", {
+                            className: "cs-left-sticky",
+                            children: [
+                              (0, t.jsxs)("div", {
+                                children: [
+                                  (0, t.jsxs)("div", {
+                                    className: "cs-breadcrumb",
+                                    children: [
+                                      (0, t.jsx)("span", { children: "✦ MAVON" }),
+                                      (0, t.jsx)("span", { style: { opacity: 0.4 }, children: "/" }),
+                                      (0, t.jsx)("span", { children: "CASE STUDY" })
+                                    ]
+                                  }),
+                                  (0, t.jsx)("h1", {
+                                    className: "cs-title",
+                                    children: activeProject.title
+                                  }),
+                                  (0, t.jsx)("p", {
+                                    className: "cs-subtitle",
+                                    children: Array.isArray(activeProject.subTitle) ? activeProject.subTitle.join("") : activeProject.subTitle
+                                  }),
+                                  (0, t.jsx)("ul", {
+                                    className: "cs-categories",
+                                    children: (activeProject.category || []).map((cat, ci) => (0, t.jsx)("li", { children: cat }, ci))
+                                  }),
+                                  (0, t.jsxs)("div", {
+                                    className: "cs-tabs-section",
+                                    children: [
+                                      (0, t.jsx)("div", {
+                                        className: "cs-tabs-bar",
+                                        children: [
+                                          { id: "challenge", label: "THE CHALLENGE" },
+                                          { id: "approach", label: "APPROACH" },
+                                          { id: "outcome", label: "OUTCOME" },
+                                          { id: "wedid", label: "WHAT WE DID" }
+                                        ].map((tb) => (0, t.jsx)("button", {
+                                          type: "button",
+                                          className: "cs-tab-btn " + (activeTab === tb.id ? "active" : ""),
+                                          onClick: () => setActiveTab(tb.id),
+                                          children: tb.label
+                                        }, tb.id))
+                                      }),
+                                      (0, t.jsx)("div", {
+                                        className: "cs-tab-content",
+                                        dangerouslySetInnerHTML: { __html: currentTabContent }
+                                      })
+                                    ]
+                                  })
+                                ]
+                              }),
+                              (0, t.jsxs)("div", {
+                                className: "cs-actions-row",
+                                children: [
+                                  (0, t.jsxs)("a", {
+                                    href: activeProject.buttonUrl,
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                    className: "cs-live-cta",
+                                    children: [
+                                      (0, t.jsx)("span", { children: "EXPLORE LIVE SITE" }),
+                                      (0, t.jsx)("span", { children: "↗" })
+                                    ]
+                                  }),
+                                  (0, t.jsxs)("div", {
+                                    className: "cs-nav-btns",
+                                    children: [
+                                      (0, t.jsx)("button", {
+                                        type: "button",
+                                        className: "cs-nav-btn",
+                                        onClick: () => navigateTo(prevSlug),
+                                        children: "← PREV"
+                                      }),
+                                      (0, t.jsx)("span", { style: { color: "rgba(255,255,255,0.2)" }, children: "/" }),
+                                      (0, t.jsx)("button", {
+                                        type: "button",
+                                        className: "cs-nav-btn",
+                                        onClick: () => navigateTo(nextSlug),
+                                        children: "NEXT →"
+                                      })
+                                    ]
+                                  })
+                                ]
+                              })
+                            ]
+                          }),
+                          /* RIGHT SCROLLABLE SHOWCASE COLUMN */
+                          (0, t.jsxs)("div", {
+                            className: "cs-right-scroll",
+                            children: [
+                              /* Hero Browser Card */
+                              (0, t.jsxs)("div", {
+                                className: "cs-gallery-card",
+                                children: [
+                                  (0, t.jsxs)("div", {
+                                    className: "cs-gallery-topbar",
+                                    children: [
+                                      (0, t.jsx)("span", { className: "cs-dot red" }),
+                                      (0, t.jsx)("span", { className: "cs-dot yellow" }),
+                                      (0, t.jsx)("span", { className: "cs-dot green" }),
+                                      (0, t.jsx)("span", { className: "cs-url-bar", children: activeProject.buttonUrl })
+                                    ]
+                                  }),
+                                  (0, t.jsx)("img", {
+                                    src: activeProject.image,
+                                    alt: activeProject.title,
+                                    className: "cs-gallery-img"
+                                  })
+                                ]
+                              }),
+                              /* Dual Experience Spotlight Cards */
+                              (0, t.jsxs)("div", {
+                                className: "cs-gallery-dual",
+                                children: [
+                                  (0, t.jsxs)("div", {
+                                    className: "cs-feature-card",
+                                    children: [
+                                      (0, t.jsx)("div", { className: "cs-feature-badge", children: "OVERVIEW" }),
+                                      (0, t.jsx)("h3", { className: "cs-feature-title", children: "Architectural Intent" }),
+                                      (0, t.jsx)("p", { className: "cs-feature-desc", children: challengeContent })
+                                    ]
+                                  }),
+                                  (0, t.jsxs)("div", {
+                                    className: "cs-feature-card gold-border",
+                                    children: [
+                                      (0, t.jsx)("div", { className: "cs-feature-badge gold", children: "EXECUTION" }),
+                                      (0, t.jsx)("h3", { className: "cs-feature-title", children: "Craft & Innovation" }),
+                                      (0, t.jsx)("p", { className: "cs-feature-desc", children: approachContent })
+                                    ]
+                                  })
+                                ]
+                              }),
+                              /* Outcome Banner */
+                              outcomeContent ? (0, t.jsxs)("div", {
+                                className: "cs-feature-card",
+                                style: { background: "linear-gradient(135deg, #101216 0%, #171510 100%)", border: "1px solid rgba(229, 168, 59, 0.2)" },
+                                children: [
+                                  (0, t.jsx)("div", { className: "cs-feature-badge gold", children: "IMPACT & OUTCOME" }),
+                                  (0, t.jsx)("h3", { className: "cs-feature-title", children: "Digital Distinction" }),
+                                  (0, t.jsx)("p", { className: "cs-feature-desc", children: outcomeContent })
+                                ]
+                              }) : null,
+                              /* Next Project Teaser Banner */
+                              (0, t.jsxs)("div", {
+                                className: "cs-next-teaser",
+                                onClick: () => navigateTo(nextSlug),
+                                children: [
+                                  (0, t.jsx)("div", { className: "cs-next-label", children: "NEXT PROJECT →" }),
+                                  (0, t.jsx)("div", { className: "cs-next-title", children: nextProject.title }),
+                                  (0, t.jsx)("div", { className: "cs-next-sub", children: Array.isArray(nextProject.subTitle) ? nextProject.subTitle.join("") : nextProject.subTitle }),
+                                  (0, t.jsx)("div", {
+                                    className: "cs-next-thumb-wrap",
+                                    children: (0, t.jsx)("img", {
+                                      src: nextProject.image,
+                                      alt: nextProject.title,
+                                      className: "cs-next-thumb"
+                                    })
+                                  })
+                                ]
+                              })
+                            ]
+                          })
+                        ]
+                      })
+                    })
+                  ]
+                });})(),
             ],
           })
         );

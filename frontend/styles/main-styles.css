@@ -5287,6 +5287,17 @@ body.is-404 {
   stroke-opacity: 0.7;
   vector-effect: non-scaling-stroke;
 }
+#logo-svg-wrap #t1 > path {
+  stroke: #FFFFFF;
+  stroke-opacity: 0.85;
+  fill: rgba(255, 255, 255, 0.12);
+}
+#logo-svg-wrap #t2 > path,
+#logo-svg-wrap #t3 > path {
+  stroke: #E5A83B;
+  stroke-opacity: 0.9;
+  fill: rgba(229, 168, 59, 0.16);
+}
 #header-dot {
   clip-path: circle(50%);
   background: var(--bg);

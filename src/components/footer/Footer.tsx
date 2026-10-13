@@ -25,10 +25,10 @@ export function Footer() {
           </div>
 
           <a
-            href="mailto:hello@trionn.com"
+            href="mailto:mavontechsolutions@gmail.com"
             className="group inline-flex items-center gap-4 px-8 py-5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-zinc-200 transition-all duration-300"
           >
-            <span>hello@trionn.com</span>
+            <span>mavontechsolutions@gmail.com</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
@@ -43,7 +43,7 @@ export function Footer() {
               Studio Headquarters
             </span>
             <p className="leading-relaxed text-zinc-300">
-              TRIONN Design Studio
+              Mavon Design Studio
               <br />
               Gujarat, India
               <br />
@@ -57,16 +57,22 @@ export function Footer() {
               Connect
             </span>
             <a
-              href="mailto:hello@trionn.com"
+              href="mailto:mavontechsolutions@gmail.com"
               className="text-zinc-300 hover:text-white transition-colors"
             >
-              E: hello@trionn.com
+              E: mavontechsolutions@gmail.com
             </a>
             <a
-              href="tel:+919824182099"
+              href="tel:+917678046520"
               className="text-zinc-300 hover:text-white transition-colors"
             >
-              P: +91 98241 82099
+              P: +91 76780 46520
+            </a>
+            <a
+              href="tel:+917977457097"
+              className="text-zinc-300 hover:text-white transition-colors"
+            >
+              P: +91 79774 57097
             </a>
           </div>
 
@@ -104,19 +110,15 @@ export function Footer() {
             </span>
             <div className="flex flex-wrap gap-x-4 gap-y-2 text-zinc-300">
               <a
-                href="#dribbble"
-                className="hover:text-white"
-              >
-                Dribbble
-              </a>
-              <a
                 href="#behance"
                 className="hover:text-white"
               >
                 Behance
               </a>
               <a
-                href="#instagram"
+                href="https://www.instagram.com/_mavon_/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-white"
               >
                 Instagram
@@ -133,7 +135,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-10 border-t border-[#2f323b]/40 text-xs font-mono text-zinc-600">
-          <div>© {new Date().getFullYear()} TRIONN. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} MAVON. All rights reserved.</div>
 
           <button
             onClick={scrollToTop}

@@ -990,7 +990,7 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-localpattern
     r.default.registerPlugin(o.useGSAP);
     let h =
       c.enquiry.find((e) => e.url.startsWith("mailto:"))?.title ??
-      "hello@trionn.com";
+      "hello@mavon.com";
     e.s([
       "default",
       0,
@@ -1119,7 +1119,7 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-localpattern
               ref: p,
               role: "dialog",
               "aria-modal": "true",
-              "aria-label": "Contact TRIONN",
+              "aria-label": "Contact MAVON",
               "aria-hidden": !e,
               className:
                 "contact-popup-wrapper invisible opacity-0 fixed inset-0 z-100 flex justify-end md:p-4 pointer-events-none",

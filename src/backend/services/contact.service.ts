@@ -21,7 +21,7 @@ export class ContactService {
     return {
       success: true,
       message:
-        "Thank you for your enquiry. The TRIONN team will be in touch shortly.",
+        "Thank you for your enquiry. The MAVON team will be in touch shortly.",
       id: referenceId,
     };
   }

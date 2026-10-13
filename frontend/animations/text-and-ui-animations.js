@@ -1529,6 +1529,7 @@
                     type: "submit" === c ? "submit" : "button",
                     onClick: f,
                     "aria-label": p,
+                    "data-slug": u,
                     className: n(
                       "btn button-text relative flex w-full min-h-10 cursor-pointer items-center overflow-hidden no-underline uppercase",
                       "px-[calc(var(--pad-x)*1.2)]",
@@ -1617,6 +1618,7 @@
                     ref: m,
                     href: l,
                     target: d,
+                    "data-slug": l && l.startsWith("/work/") ? l.replace(/^\/work\/?/, "") : undefined,
                     transitionLabel: u,
                     className: n(
                       "btn button-text relative flex w-full min-h-10 cursor-pointer items-center overflow-hidden no-underline",

@@ -58,25 +58,33 @@ export function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
               Business Enquiry:
             </span>
             <a
-              href="mailto:hello@trionn.com"
+              href="mailto:mavontechsolutions@gmail.com"
               className="text-[#d8d8d8] hover:text-white transition-colors"
             >
-              hello@trionn.com
+              mavontechsolutions@gmail.com
             </a>
           </div>
           <div>
             <span className="block text-zinc-600 uppercase mb-1">
               Direct Line:
             </span>
-            <a
-              href="tel:+919824182099"
-              className="text-[#d8d8d8] hover:text-white transition-colors"
-            >
-              +91 98241 82099
-            </a>
+            <div className="flex flex-col gap-1">
+              <a
+                href="tel:+917678046520"
+                className="text-[#d8d8d8] hover:text-white transition-colors"
+              >
+                +91 76780 46520
+              </a>
+              <a
+                href="tel:+917977457097"
+                className="text-[#d8d8d8] hover:text-white transition-colors"
+              >
+                +91 79774 57097
+              </a>
+            </div>
           </div>
           <div className="pt-4 text-zinc-700">
-            © {new Date().getFullYear()} TRIONN. Independent AI-Powered Digital
+            © {new Date().getFullYear()} MAVON. Independent AI-Powered Digital
             Studio.
           </div>
         </div>

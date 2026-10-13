@@ -7,18 +7,18 @@ import { Preloader } from "../components/ui/Preloader";
 
 export const metadata: Metadata = {
   title:
-    "Work | Award-Winning AI-Powered Digital Experiences & Websites | TRIONN",
+    "Work | Award-Winning AI-Powered Digital Experiences & Websites | MAVON",
   description:
-    "TRIONN is an independent AI-powered digital studio showcasing award-winning websites, immersive digital experiences, branding, WebGL interactions, and creative technology projects crafted through strategy, design, and innovation for ambitious brands worldwide.",
+    "MAVON is an independent AI-powered digital studio showcasing award-winning websites, immersive digital experiences, branding, WebGL interactions, and creative technology projects crafted through strategy, design, and innovation for ambitious brands worldwide.",
   icons: {
     icon: "/images/favicon.svg",
     apple: "/images/apple-touch-icon.png",
   },
   openGraph: {
     title:
-      "Work | Award-Winning AI-Powered Digital Experiences & Websites | TRIONN",
+      "Work | Award-Winning AI-Powered Digital Experiences & Websites | MAVON",
     description:
-      "Discover TRIONN’s portfolio of immersive AI-powered websites, creative technology projects, branding, WebGL experiences, and premium digital products.",
+      "Discover MAVON’s portfolio of immersive AI-powered websites, creative technology projects, branding, WebGL experiences, and premium digital products.",
     url: "/work",
   },
 };

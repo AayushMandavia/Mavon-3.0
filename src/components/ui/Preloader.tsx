@@ -39,7 +39,7 @@ export function Preloader() {
       >
         {/* Top Header */}
         <div className="flex justify-between items-center text-xs tracking-widest font-mono text-zinc-500 uppercase">
-          <span>TRIONN STUDIO</span>
+          <span>MAVON STUDIO</span>
           <span>EXPERIENCE 2026</span>
         </div>
 
@@ -72,9 +72,25 @@ export function Preloader() {
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
-                d="M269.431 257.019C268.708 258.271 268.717 259.816 269.455 261.06L286.98 290.611C288.54 293.241 292.355 293.219 293.885 290.57L327.284 232.72C328.825 230.052 332.677 230.054 334.215 232.724L425.279 390.875C425.982 392.095 427.275 392.856 428.682 392.878L463.65 393.434C466.755 393.483 468.73 390.129 467.18 387.438L353.861 190.681C353.148 189.444 353.149 187.921 353.863 186.685L388.264 127.101C388.965 125.885 388.979 124.391 388.299 123.163L371.368 92.5833C369.861 89.8615 365.96 89.8265 364.404 92.5208L269.431 257.019Z"
+                d="M47.77 79.8L43.25 83.57L42.49 456.39L43.25 466.93L45.51 469.95L49.27 470.7L87.68 439.82L121.58 409.69L123.08 262.07L228.53 362.99L234.55 361.49L290.29 313.28L291.04 307.26L95.97 121.22L52.28 81.31Z"
                 fill="none"
-                stroke="#e5e5df"
+                stroke="#FFFFFF"
+                strokeWidth="10"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M458.25 82.06L453.73 81.31L265.43 243.24L265.43 250.77L304.6 287.68L310.62 288.43L459.75 159.64L460.51 85.07Z"
+                fill="none"
+                stroke="#E5A83B"
+                strokeWidth="10"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M453.73 191.27L360.33 271.86L358.83 274.87L358.83 408.18L364.85 415.72L452.22 494.8L457.49 494.8L460.51 490.28L460.51 194.28L457.49 191.27Z"
+                fill="none"
+                stroke="#E5A83B"
                 strokeWidth="10"
               />
             </svg>

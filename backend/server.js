@@ -118,8 +118,8 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 2. Any subpage under /work/ or other routes redirect to /work
-  if (reqPath !== '/work' && !reqPath.startsWith('/api/') && !path.extname(reqPath)) {
+  // 2. Any other subpage routes redirect to /work (except /work/* and /api/*)
+  if (reqPath !== '/work' && !reqPath.startsWith('/work/') && !reqPath.startsWith('/api/') && !path.extname(reqPath)) {
     res.writeHead(302, { Location: '/work' });
     res.end();
     return;
@@ -137,13 +137,16 @@ const server = http.createServer((req, res) => {
     return handleContactRequest(req, res);
   }
 
-  // 5. The Single Showcase Page: /work
-  if (reqPath === '/work') {
+  // 5. The Showcase & Project Detail Page: /work and /work/:slug
+  if (reqPath === '/work' || reqPath.startsWith('/work/')) {
     const indexPath = path.join(PUBLIC_DIR, 'index.html');
     if (fs.existsSync(indexPath)) {
       res.writeHead(200, {
         'Content-Type': 'text/html; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       });
       fs.createReadStream(indexPath).pipe(res);
       return;
@@ -158,7 +161,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
       'Content-Type': contentType,
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000, immutable',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
     });
     fs.createReadStream(filePath).pipe(res);
     return;
@@ -169,11 +172,26 @@ const server = http.createServer((req, res) => {
   res.end(`Not Found: ${reqPath}`);
 });
 
+let currentPort = Number(PORT);
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    currentPort += 1;
+    console.warn(`⚠️ Port ${currentPort - 1} is busy, trying port ${currentPort}...`);
+    setTimeout(() => {
+      server.listen(currentPort);
+    }, 100);
+  } else {
+    console.error('Server error:', err);
+  }
+});
+
 function startServer(port = PORT) {
-  server.listen(port, () => {
+  currentPort = Number(port);
+  server.listen(currentPort, () => {
     console.log(`\n======================================================`);
-    console.log(`🚀 TRIONN Showcase Server Running!`);
-    console.log(`🔗 Local URL: http://localhost:${port}/work`);
+    console.log(`🚀 MAVON Showcase Server Running!`);
+    console.log(`🔗 Local URL: http://localhost:${currentPort}/work`);
     console.log(`🎯 Single Unified Showcase Page Active (Subpages Removed)`);
     console.log(`======================================================\n`);
   });

@@ -19,10 +19,10 @@ export function Navbar() {
           className="flex items-center gap-3 group"
           onMouseEnter={() => playSfx("beep")}
         >
-          {/* TRIONN Wordmark / Logo */}
+          {/* MAVON Wordmark / Logo */}
           <div className="flex items-center gap-2">
             <span className="text-xl md:text-2xl font-black tracking-[0.25em] text-[#d8d8d8] group-hover:text-white transition-colors duration-300 font-display">
-              TRIONN
+              MAVON
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#d8d8d8] group-hover:bg-white animate-pulse" />
           </div>

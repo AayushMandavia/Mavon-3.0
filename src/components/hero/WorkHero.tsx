@@ -51,7 +51,7 @@ export function WorkHero({ projectCount }: { projectCount: number }) {
           </div>
 
           <div className="md:col-span-8 text-sm md:text-base leading-relaxed text-zinc-400 font-normal">
-            TRIONN is an independent AI-powered digital studio crafting
+            MAVON is an independent AI-powered digital studio crafting
             award-winning websites, WebGL interactions, branding systems, and
             immersive digital experiences for ambitious brands worldwide.
           </div>

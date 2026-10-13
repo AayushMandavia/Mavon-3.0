@@ -1,4 +1,4 @@
-# TRIONN Portfolio & Digital Studio — Version 3 (v3)
+# MAVON 3.0 — Luxury Motion-Led Digital Studio & Showcase
 
 High-performance, modern digital studio portfolio featuring award-winning animations, interactive WebGL canvas background, GSAP motion systems, Lenis smooth scrolling, integrated audio synthesizer, and a clean modular architecture (`frontend/`, `backend/`, `database/`).
 
@@ -30,7 +30,7 @@ Open **[http://localhost:3000/work](http://localhost:3000/work)** in your browse
 The codebase is organized into distinct, human-readable modules:
 
 ```
-c:\Projects\Mavon\Trionn/
+Mavon-3.0/
 ├── frontend/                        # 🎨 All Frontend Presentation, Animations & Assets
 │   ├── animations/                  # Motion, physics, and interaction controllers
 │   │   ├── gsap-core.js             # GSAP timeline engine, ScrollTrigger & Flip plugin
@@ -97,7 +97,7 @@ c:\Projects\Mavon\Trionn/
 - **Floating Preview Thumbnail Canvas**: Background renders floating interactive thumbnails of projects across coordinate space.
 - **Studio Typography**: Centered editorial display heading (`"Our work"`) with responsive max-width paragraph container (`"A curated showcase of branding, digital products, websites, and mobile experiences."`).
 - **Interactive Action Header**:
-  - Left: TRIONN brand monogram SVG mark with live pulsating indicator.
+  - Left: MAVON brand monogram SVG mark with live pulsating indicator.
   - Right: `#sound-toggle` audio controller, `LET'S TALK` pill CTA, and `MENU = ` navigation trigger.
 
 ### 2. Staggered Project Grid Layout
