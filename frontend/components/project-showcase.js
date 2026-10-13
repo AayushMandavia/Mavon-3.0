@@ -2201,7 +2201,7 @@
                         }),
                         (0, t.jsx)(a.BlurTextReveal, {
                           as: "h1",
-                          text: "Our work",
+                          text: "Beyond Ordinary",
                           animationType: "chars",
                           stagger: 0.08,
                           className: "z-2 mb-6",
@@ -2216,9 +2216,9 @@
                           className: "small",
                           delay: 0.5,
                           children: [
-                            "A curated showcase of branding, digital products, ",
+                            "Distinctive brands, intelligent software, ",
                             (0, t.jsx)("br", {}),
-                            "websites, and mobile experiences.",
+                            "limitless possibilities.",
                           ],
                         }),
                       ],
