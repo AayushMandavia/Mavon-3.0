@@ -28,12 +28,12 @@ export function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
         </div>
 
         {/* Links */}
-        <nav className="flex flex-col gap-6 py-12">
+        <nav className="flex flex-col gap-6 py-8">
           {[
-            { label: "Work", href: "/work", active: true },
-            { label: "Services", href: "#services" },
-            { label: "About", href: "#about" },
-            { label: "Contact", href: "#contact" },
+            { label: "Work", href: "#projects-grid", active: true },
+            { label: "Services", href: "#projects-grid" },
+            { label: "About", href: "#page-header" },
+            { label: "Contact", href: "#contact-section" },
           ].map((item, idx) => (
             <Link
               key={idx}
@@ -49,10 +49,19 @@ export function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
               </span>
             </Link>
           ))}
+          <div className="pt-2">
+            <Link
+              href="/mavon-story"
+              onClick={onClose}
+              className="inline-block px-4 py-2 rounded-full border border-zinc-700 hover:border-white text-xs font-mono uppercase tracking-wider text-zinc-300 hover:text-white transition-colors"
+            >
+              ✦ THE MAVON NAME STORY
+            </Link>
+          </div>
         </nav>
 
         {/* Contact Info Footer */}
-        <div className="pt-8 border-t border-zinc-900 flex flex-col gap-4 text-xs font-mono text-zinc-500">
+        <div className="pt-6 border-t border-zinc-900 flex flex-col gap-4 text-xs font-mono text-zinc-500">
           <div>
             <span className="block text-zinc-600 uppercase mb-1">
               Business Enquiry:
@@ -83,7 +92,20 @@ export function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
               </a>
             </div>
           </div>
-          <div className="pt-4 text-zinc-700">
+          <div>
+            <span className="block text-zinc-600 uppercase mb-1">
+              Social:
+            </span>
+            <a
+              href="https://www.instagram.com/_mavon_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#d8d8d8] hover:text-white transition-colors"
+            >
+              Instagram
+            </a>
+          </div>
+          <div className="pt-2 text-zinc-700">
             © {new Date().getFullYear()} MAVON. Independent AI-Powered Digital
             Studio.
           </div>

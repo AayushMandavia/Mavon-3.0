@@ -110,24 +110,12 @@ export function Footer() {
             </span>
             <div className="flex flex-wrap gap-x-4 gap-y-2 text-zinc-300">
               <a
-                href="#behance"
-                className="hover:text-white"
-              >
-                Behance
-              </a>
-              <a
                 href="https://www.instagram.com/_mavon_/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white"
+                className="hover:text-white transition-colors"
               >
                 Instagram
-              </a>
-              <a
-                href="#linkedin"
-                className="hover:text-white"
-              >
-                LinkedIn
               </a>
             </div>
           </div>

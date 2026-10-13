@@ -2309,7 +2309,7 @@
                     (0, t.jsx)("h3", {
                       className: "text-center text-light-font max-w-258",
                       children:
-                        "Over the years, we have delivered successful projects for clients worldwide, and if you would like to explore work related to your requirements, we would be happy to share relevant examples.",
+                        "Crafting transformative digital products, immersive web experiences, and intelligent AI solutions for forward-thinking leaders worldwide.",
                     }),
                   ],
                 }),

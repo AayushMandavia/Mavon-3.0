@@ -30,26 +30,26 @@ export function Navbar() {
 
         {/* Desktop Nav Links */}
         <nav className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-mono text-zinc-400">
-          <Link
-            href="/work"
+          <a
+            href="#projects-grid"
             className="text-white hover:text-white transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white"
           >
             Work
-          </Link>
+          </a>
           <a
-            href="#services"
+            href="#projects-grid"
             className="hover:text-white transition-colors py-1"
           >
             Services
           </a>
           <a
-            href="#about"
+            href="#page-header"
             className="hover:text-white transition-colors py-1"
           >
             About
           </a>
           <a
-            href="#contact"
+            href="#contact-section"
             className="hover:text-white transition-colors py-1"
           >
             Contact

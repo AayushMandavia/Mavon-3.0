@@ -213,8 +213,8 @@
           title: "mavontechsolutions@gmail.com",
           url: "mailto:mavontechsolutions@gmail.com",
         },
-        { label: "P", title: "+91 76780 46520", url: "tel:+91 76780 46520" },
-        { label: "P", title: "+91 79774 57097", url: "tel:+91 79774 57097" },
+        { label: "P.", title: "+91 76780 46520", url: "tel:+917678046520" },
+        { label: "P.", title: "+91 79774 57097", url: "tel:+917977457097" },
       ],
       "faqData",
       0,
@@ -358,10 +358,10 @@
       "menu",
       0,
       [
-        { title: "Work", url: "/work" },
-        { title: "Services", url: "/services" },
-        { title: "About", url: "/about" },
-        { title: "Contact", url: "/contact" },
+        { title: "Work", url: "#projects-grid" },
+        { title: "Services", url: "#projects-grid" },
+        { title: "About", url: "#page-header" },
+        { title: "Contact", url: "#contact-section" },
       ],
       "partnersLogo",
       0,
@@ -389,10 +389,6 @@
       "social",
       0,
       [
-        {
-          title: "Linkedin",
-          url: "#linkedin",
-        },
         { title: "Instagram", url: "https://www.instagram.com/_mavon_/" },
       ],
     ]);

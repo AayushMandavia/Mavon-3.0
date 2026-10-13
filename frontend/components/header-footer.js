@@ -12,7 +12,7 @@
     e.i(83390);
     var o = e.i(34470),
       l = e.i(42163);
-    function i() {
+    function i({ onNavigate } = {}) {
       let e = (0, a.usePathname)(),
         r = {
           "/": "Home",
@@ -23,20 +23,26 @@
         };
       return (0, t.jsx)(t.Fragment, {
         children: (0, t.jsx)("div", {
-          className: "menu-wrapper",
+          className: "menu-wrapper w-full",
           children: (0, t.jsx)("ul", {
             className:
-              "flex flex-col md:flex-row items-center justify-end gap-2 md:gap-x-6",
+              "flex flex-col items-start justify-start gap-4 w-full text-left",
             children: l.menu.map((n, a) => {
               let l = e === n.url;
               return (0, t.jsx)(
                 "li",
                 {
-                  className: "menu-item",
+                  className: "menu-item w-full text-left",
                   children: (0, t.jsx)(s.TransitionLink, {
-                    className: `menu block uppercase text-white ${l ? "active" : ""}`,
+                    className: `menu block uppercase text-white hover:text-white/80 transition-colors text-left ${l ? "active" : ""}`,
                     href: n.url,
                     transitionLabel: n.title || r[n.url],
+                    onClick: (ev) => {
+                      if (onNavigate) {
+                        ev?.preventDefault?.();
+                        onNavigate(n.url);
+                      }
+                    },
                     children: (0, t.jsx)(o.HoverBlur, { children: n.title }),
                   }),
                 },
@@ -147,6 +153,28 @@
             let [c, d] = (0, r.useState)(!1);
             (0, a.usePathname)();
             let { open: h } = (0, v.useContactPopup)(),
+              B = (url) => {
+                d(!1);
+                C.current?.timeScale(1.75).reverse();
+                if (url && url.startsWith("#")) {
+                  let isHome = window.location.pathname === "/" || window.location.pathname === "/work";
+                  if (isHome) {
+                    if (url === "#contact" || url === "#contact-section") {
+                      let el = document.querySelector("#contact-section") || document.querySelector("#contact");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                      setTimeout(() => { h(); }, 400);
+                    } else {
+                      let el = document.querySelector(url);
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  } else {
+                    window.location.href = "/" + url;
+                    if (url === "#contact" || url === "#contact-section") {
+                      setTimeout(() => { h(); }, 600);
+                    }
+                  }
+                }
+              },
               p = (0, r.useRef)(null),
               w = (0, r.useRef)(null),
               k = (0, r.useRef)(null),
@@ -385,54 +413,60 @@
                     style: { transform: "translateX(100%)" },
                     children: (0, t.jsxs)("div", {
                       className:
-                        "mobile-menu-inner flex flex-col items-center justify-between gap-20 min-h-full w-full pb-20 px-6 pt-40",
+                        "mobile-menu-inner flex flex-col items-start justify-between min-h-full w-full pb-16 px-8 pt-28 text-left",
                       children: [
-                        (0, t.jsx)(i, {}),
-                        (0, t.jsx)("div", {
-                          className: "bottom-stagger-item",
-                          children: (0, t.jsx)(s.TransitionLink, {
-                            href: "/mavon-story",
-                            transitionLabel: "Mavon Name Story",
-                            className:
-                              "transition-all duration-300 title pt-1.5 pb-2 px-4 rounded-full border border-light-font/50 group hover:border-light-font relative z-50",
-                            children: (0, t.jsx)(o.HoverBlur, {
-                              children: "✦ The MAVON name Story",
+                        (0, t.jsxs)("div", {
+                          className: "flex flex-col items-start gap-8 w-full",
+                          children: [
+                            (0, t.jsx)(i, { onNavigate: (url) => B(url) }),
+                            (0, t.jsx)("div", {
+                              className: "bottom-stagger-item w-full text-left",
+                              children: (0, t.jsx)(s.TransitionLink, {
+                                href: "/mavon-story",
+                                transitionLabel: "Mavon Name Story",
+                                onClick: () => {
+                                  d(!1);
+                                  C.current?.timeScale(1.75).reverse();
+                                },
+                                className:
+                                  "transition-all duration-300 title pt-2 pb-2.5 px-5 rounded-full border border-light-font/40 hover:border-light-font relative z-50 inline-block text-xs uppercase tracking-wider text-white",
+                                children: (0, t.jsx)(o.HoverBlur, {
+                                  children: "✦ THE MAVON NAME STORY",
+                                }),
+                              }),
                             }),
-                          }),
+                          ],
                         }),
-                        (0, t.jsx)(D.default, {
-                          customClass: "header-menu-line w-full",
-                          disableScrollTrigger: !0,
-                          lineClass: "bg-[#2F323B] left-1/2! -translate-x-1/2",
-                          plusClass: "col-span-12 mx-auto",
-                          iconColor: "#D8D8D8",
+                        (0, t.jsx)("div", {
+                          className: "header-menu-line w-full my-4 opacity-15",
+                          children: (0, t.jsx)("div", { className: "line h-px w-0 bg-[#2F323B]" }),
                         }),
                         (0, t.jsxs)("div", {
-                          className: "flex flex-col items-center gap-20",
+                          className: "flex flex-col items-start text-left gap-8 w-full",
                           children: [
                             (0, t.jsxs)("div", {
-                              className: "flex flex-col",
+                              className: "flex flex-col items-start text-left gap-2 w-full",
                               children: [
                                 (0, t.jsx)("span", {
                                   className:
-                                    "bottom-stagger-item mb-6 text-light-font/50 title block text-center",
-                                  children: "Business enquiry",
+                                    "bottom-stagger-item mb-2 text-light-font/50 title block text-xs uppercase tracking-widest",
+                                  children: "BUSINESS ENQUIRY",
                                 }),
                                 l.enquiry.map((e, r) =>
                                   (0, t.jsxs)(
                                     "p",
                                     {
                                       className:
-                                        "bottom-stagger-item flex gap-2 mb-2 last:mb-0 justify-center",
+                                        "bottom-stagger-item flex gap-3 mb-1.5 last:mb-0 items-baseline text-sm text-light-font",
                                       children: [
                                         (0, t.jsx)("span", {
                                           className:
-                                            "shrink-0 uppercase text-light-font/50",
+                                            "shrink-0 uppercase text-light-font/50 font-mono text-xs w-5",
                                           children: g(e.label),
                                         }),
                                         (0, t.jsx)(x.default, {
                                           className:
-                                            "relative z-3 block text-light-font",
+                                            "relative z-3 block text-light-font hover:text-white transition",
                                           href: e.url,
                                           onClick: () => {
                                             c &&
@@ -452,59 +486,37 @@
                                 ),
                               ],
                             }),
-                            (0, t.jsx)("div", {
-                              className: "flex flex-col gap-10 text-center",
-                              children: (0, t.jsxs)("div", {
-                                className:
-                                  "bottom-stagger-item flex border border-[#2F323B] overflow-hidden rounded-sm min-h-18 text-light-font title",
-                                children: [
-                                  (0, t.jsxs)("div", {
-                                    className:
-                                      "flex flex-col justify-center items-center min-w-26 border-r border-[#2F323B] text-center gap-2 p-4",
-                                    children: [
-                                      (0, t.jsxs)("svg", {
-                                        width: "43",
-                                        height: "27",
-                                        viewBox: "0 0 43 27",
-                                        fill: "none",
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        children: [
-                                          (0, t.jsx)("mask", {
-                                            id: "path-1-inside-1_12348_492_mobile",
-                                            fill: "white",
-                                            children: (0, t.jsx)("path", {
-                                              d: "M22.0098 0.00488281C33.425 0.18638 42.5948 5.94967 42.9004 13.1299C42.964 13.2463 43 13.3704 43 13.5C42.9856 13.5991 42.9515 13.6943 42.9033 13.7861C42.6622 21.1215 33.1713 26.9999 21.4551 27C9.58671 27 0 20.9681 0 13.5C7.01302e-06 6.03191 9.58672 0 21.4551 0L22.0098 0.00488281ZM15.2822 14.6484C15.6586 20.8749 19.0438 24.7598 21.4551 24.7598C23.8663 24.7596 27.2505 20.8747 27.627 14.6484H15.2822ZM3.65332 14.6484C4.35225 18.9618 8.94408 22.5637 15.1729 24.04C13.1002 21.666 11.9316 18.1611 11.7217 14.6484H3.65332ZM31.1875 14.6484C30.9775 18.1613 29.8092 21.666 27.7363 24.04C33.9652 22.5638 38.5569 18.9618 39.2559 14.6484H31.1875ZM15.1729 2.95898C8.94443 4.43513 4.35279 8.03764 3.65332 12.3506H11.7217C11.9318 8.83797 13.1 5.33279 15.1729 2.95898ZM21.4551 2.24023C19.044 2.24023 15.6589 6.12472 15.2822 12.3506H27.627C27.2502 6.12487 23.8662 2.24039 21.4551 2.24023ZM27.7363 2.95898C29.8093 5.33278 30.9773 8.83781 31.1875 12.3506H39.2559C38.5564 8.03762 33.9648 4.43511 27.7363 2.95898Z",
-                                            }),
+                            (0, t.jsxs)("div", {
+                              className: "flex flex-col items-start text-left gap-2 w-full",
+                              children: [
+                                (0, t.jsx)("span", {
+                                  className:
+                                    "bottom-stagger-item mb-2 text-light-font/50 title block text-xs uppercase tracking-widest",
+                                  children: "SOCIAL",
+                                }),
+                                (0, t.jsx)("div", {
+                                  className: "flex items-center gap-8 w-full",
+                                  children: l.social.map((e, r) =>
+                                    (0, t.jsx)(
+                                      "p",
+                                      {
+                                        className: "bottom-stagger-item",
+                                        children: (0, t.jsx)(x.default, {
+                                          className:
+                                            "relative z-3 block text-light-font hover:text-white transition text-sm",
+                                          href: e.url,
+                                          target: "_blank",
+                                          rel: "noopener noreferrer",
+                                          children: (0, t.jsx)(o.HoverBlur, {
+                                            children: e.title,
                                           }),
-                                          (0, t.jsx)("path", {
-                                            d: "M22.0098 0.00488281C33.425 0.18638 42.5948 5.94967 42.9004 13.1299C42.964 13.2463 43 13.3704 43 13.5C42.9856 13.5991 42.9515 13.6943 42.9033 13.7861C42.6622 21.1215 33.1713 26.9999 21.4551 27C9.58671 27 0 20.9681 0 13.5C7.01302e-06 6.03191 9.58672 0 21.4551 0L22.0098 0.00488281ZM15.2822 14.6484C15.6586 20.8749 19.0438 24.7598 21.4551 24.7598C23.8663 24.7596 27.2505 20.8747 27.627 14.6484H15.2822ZM3.65332 14.6484C4.35225 18.9618 8.94408 22.5637 15.1729 24.04C13.1002 21.666 11.9316 18.1611 11.7217 14.6484H3.65332ZM31.1875 14.6484C30.9775 18.1613 29.8092 21.666 27.7363 24.04C33.9652 22.5638 38.5569 18.9618 39.2559 14.6484H31.1875ZM15.1729 2.95898C8.94443 4.43513 4.35279 8.03764 3.65332 12.3506H11.7217C11.9318 8.83797 13.1 5.33279 15.1729 2.95898ZM21.4551 2.24023C19.044 2.24023 15.6589 6.12472 15.2822 12.3506H27.627C27.2502 6.12487 23.8662 2.24039 21.4551 2.24023ZM27.7363 2.95898C29.8093 5.33278 30.9773 8.83781 31.1875 12.3506H39.2559C38.5564 8.03762 33.9648 4.43511 27.7363 2.95898Z",
-                                            fill: "#D8D8D8",
-                                            mask: "url(#path-1-inside-1_12348_492_mobile)",
-                                          }),
-                                        ],
-                                      }),
-                                      (0, t.jsx)("span", {
-                                        className:
-                                          "text-sm leading-3.5 -tracking-[0.02em] uppercase block",
-                                        children: "Est. 2012",
-                                      }),
-                                    ],
-                                  }),
-                                  (0, t.jsx)("div", {
-                                    className:
-                                      "p-4 flex flex-col justify-center items-center",
-                                    children: (0, t.jsxs)("span", {
-                                      className:
-                                        "text-sm leading-3.5 -tracking-[0.02em] uppercase block",
-                                      children: [
-                                        "14+ years shaping ",
-                                        (0, t.jsx)("br", {}),
-                                        "digital direction.",
-                                      ],
-                                    }),
-                                  }),
-                                ],
-                              }),
+                                        }),
+                                      },
+                                      r,
+                                    ),
+                                  ),
+                                }),
+                              ],
                             }),
                           ],
                         }),
@@ -588,12 +600,17 @@
                                             transitionLabel: e.title,
                                             className:
                                               "group flex justify-between items-center w-full",
-                                            onClick: () => {
-                                              (d(!1),
-                                                C.current
-                                                  ?.timeScale(1.75)
-                                                  .reverse());
-                                            },
+                                            onClick: (ev) => {
+                                                if (e.url.startsWith("#")) {
+                                                  ev?.preventDefault?.();
+                                                  B(e.url);
+                                                } else {
+                                                  (d(!1),
+                                                    C.current
+                                                      ?.timeScale(1.75)
+                                                      .reverse());
+                                                }
+                                              },
                                             children: [
                                               (0, t.jsx)(o.HoverBlur, {
                                                 className: `h3 transition-all duration-300 block
