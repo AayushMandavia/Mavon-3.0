@@ -274,9 +274,8 @@
                 return i;
               }
               function I(e) {
-                return Array.from({ length: 28 }, (t, o) => {
-                  let r = 3.14159 * o + 1.618;
-                  if ("t1-bottom-up" === e || "bottom-up" === e) {
+                  return Array.from({ length: 28 }, (t, o) => {
+                    let r = 3.14159 * o + 1.618;
                     let y = 475 - (o + 0.5) * (400 / 28);
                     let h = 400 / 28 + 2;
                     return {
@@ -288,44 +287,8 @@
                       fillH: h,
                       axis: "h",
                     };
-                  }
-                  if ("t2-left-right" === e || "left-right" === e) {
-                    let n = 260 + (o + 0.5) * (205 / 28);
-                    let w = 205 / 28 + 2;
-                    return {
-                      path: (function (e, t) {
-                        let o = 1.2 + ((0.37 * t) % 0.8),
-                          r = 8 + ((0.61 * t) % 14),
-                          n = (1.7 * t) % (2 * Math.PI),
-                          i = `M ${e.toFixed(1)} -10`;
-                        for (let t = 1; t <= 60; t++) {
-                          let l = (t / 60) * 606 - 10,
-                            a = r * Math.sin((l / 586) * o * Math.PI + n);
-                          i += ` L ${(e + a).toFixed(1)} ${l.toFixed(1)}`;
-                        }
-                        return i;
-                      })(n, r),
-                      delay: 0.026 * o,
-                      fillX: n - w / 2,
-                      fillY: -10,
-                      fillW: w,
-                      fillH: 610,
-                      axis: "v",
-                    };
-                  }
-                  let y = 190 + (o + 0.5) * (310 / 28);
-                  let h = 310 / 28 + 2;
-                  return {
-                    path: B(y, r),
-                    delay: 0.026 * o,
-                    fillX: -10,
-                    fillY: y,
-                    fillW: 600,
-                    fillH: h,
-                    axis: "h",
-                  };
-                });
-              }
+                  });
+                }
               function V() {
                 let e = z();
                 return e.t1 && e.t2 && e.t3
