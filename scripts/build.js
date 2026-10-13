@@ -1,6 +1,41 @@
 const fs = require('fs');
 const path = require('path');
 
+const ROOT_DIR = path.join(__dirname, '..');
+const DIST_DIR = path.join(ROOT_DIR, 'dist');
+
+// 1. Clean and create dist directory
+if (fs.existsSync(DIST_DIR)) {
+  fs.rmSync(DIST_DIR, { recursive: true, force: true });
+}
+fs.mkdirSync(DIST_DIR, { recursive: true });
+
+// Helper to copy directory recursively
+function copyDirSync(src, dest) {
+  if (!fs.existsSync(src)) return;
+  fs.mkdirSync(dest, { recursive: true });
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyDirSync(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
+// 2. Copy public directory contents to dist
+copyDirSync(path.join(ROOT_DIR, 'public'), DIST_DIR);
+
+// 3. Copy frontend directory to dist/frontend
+copyDirSync(path.join(ROOT_DIR, 'frontend'), path.join(DIST_DIR, 'frontend'));
+
+// 4. Ensure index.html is in dist
+fs.copyFileSync(path.join(ROOT_DIR, 'public', 'index.html'), path.join(DIST_DIR, 'index.html'));
+
+// 5. Generate _next static chunks
 const CHUNK_TO_FRONTEND = {
   // Styles
   '0-x39_77jza10.css': 'styles/main-styles.css',
@@ -36,26 +71,42 @@ const fontFiles = [
   'PPEditorialNew_Ultralight-s.p.0qe_2frr_fmiu.woff2'
 ];
 
-['public/_next/static/chunks', '_next/static/chunks'].forEach(dir => {
+const chunkDirs = [
+  path.join(DIST_DIR, '_next', 'static', 'chunks'),
+  path.join(ROOT_DIR, 'public', '_next', 'static', 'chunks'),
+  path.join(ROOT_DIR, '_next', 'static', 'chunks')
+];
+
+chunkDirs.forEach(dir => {
   fs.mkdirSync(dir, { recursive: true });
   for (const [chunk, relPath] of Object.entries(CHUNK_TO_FRONTEND)) {
-    const src = path.join(__dirname, '..', 'frontend', relPath);
+    const src = path.join(ROOT_DIR, 'frontend', relPath);
     if (fs.existsSync(src)) {
       fs.copyFileSync(src, path.join(dir, chunk));
     }
   }
-  console.log(`[BUILD] Generated chunks in ${dir}`);
 });
 
-['public/_next/static/media', '_next/static/media'].forEach(dir => {
+const mediaDirs = [
+  path.join(DIST_DIR, '_next', 'static', 'media'),
+  path.join(ROOT_DIR, 'public', '_next', 'static', 'media'),
+  path.join(ROOT_DIR, '_next', 'static', 'media')
+];
+
+mediaDirs.forEach(dir => {
   fs.mkdirSync(dir, { recursive: true });
   for (const font of fontFiles) {
-    const src = path.join(__dirname, '..', 'public', 'fonts', font);
+    const src = path.join(ROOT_DIR, 'public', 'fonts', font);
     if (fs.existsSync(src)) {
       fs.copyFileSync(src, path.join(dir, font));
     }
   }
-  console.log(`[BUILD] Generated fonts in ${dir}`);
 });
 
-console.log('[BUILD] Static assets ready.');
+// 6. Copy projects API data
+const apiDir = path.join(DIST_DIR, 'api');
+fs.mkdirSync(apiDir, { recursive: true });
+fs.copyFileSync(path.join(ROOT_DIR, 'src', 'data', 'projects.json'), path.join(apiDir, 'projects'));
+fs.copyFileSync(path.join(ROOT_DIR, 'src', 'data', 'projects.json'), path.join(apiDir, 'projects.json'));
+
+console.log('[BUILD] dist/ created with complete static showcase assets for Vercel.');

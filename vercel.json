@@ -1,7 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/projects", "destination": "/src/data/projects.json" },
+    { "source": "/api/projects", "destination": "/api/projects.json" },
     { "source": "/", "destination": "/index.html" },
     { "source": "/work", "destination": "/index.html" },
     { "source": "/work/:slug*", "destination": "/index.html" },
