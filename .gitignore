@@ -36,3 +36,7 @@ Thumbs.db
 # Scratch & Temporary test scripts
 scratch/
 
+.vercel
+.env*
+_next/
+public/_next/

@@ -1030,7 +1030,7 @@
     // 1. Close or Back button
     if (e.target.closest('#cs-close-action, #cs-back-action, #cs-back-action-left')) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       window.closeCaseStudy();
       return;
     }
@@ -1038,13 +1038,13 @@
     // 2. Prev / Next controls
     if (e.target.closest('#cs-prev-action')) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       window.navigateCaseStudy(-1);
       return;
     }
     if (e.target.closest('#cs-next-action')) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       window.navigateCaseStudy(1);
       return;
     }
@@ -1053,7 +1053,7 @@
     const nextTeaser = e.target.closest('.cs-next-teaser');
     if (nextTeaser) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       const slug = nextTeaser.getAttribute('data-next-slug');
       if (slug) window.openCaseStudy(slug);
       return;
@@ -1063,7 +1063,7 @@
     const tabBtn = e.target.closest('.cs-tab-link');
     if (tabBtn) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       const tabId = tabBtn.getAttribute('data-tab');
       currentTab = tabId;
       const project = projects.find(p => p.slug === currentSlug);
@@ -1091,7 +1091,7 @@
 
       if (isThumb || isBtn || isTitle || isExplore) {
         e.preventDefault();
-        e.stopPropagation();
+        e.stopImmediatePropagation();
         const slug = card.getAttribute('data-slug') || e.target.closest('[data-slug]')?.getAttribute('data-slug');
         if (slug) {
           console.log('[CASE_STUDY] Card click intercepted for slug:', slug);
@@ -1109,7 +1109,7 @@
       const slug = match ? match[1] : null;
       if (slug && projects.some(p => p.slug === slug)) {
         e.preventDefault();
-        e.stopPropagation();
+        e.stopImmediatePropagation();
         console.log('[CASE_STUDY] Link click intercepted for slug:', slug);
         window.openCaseStudy(slug);
         return;
