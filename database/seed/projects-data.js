@@ -50,45 +50,45 @@ module.exports = [
     "visibleInHome": true,
     "pos": "right",
     "size": "medium",
-    "title": "Vayne",
-    "subTitle": "Contemporary fashion e-commerce storefront with high-end editorial aesthetics.",
+    "title": "Orbitalis",
+    "subTitle": "Futuristic space exploration initiative and aerospace telemetry digital interface.",
     "year": "2025",
-    "image": "/images/previews/vayne.png",
-    "mobileImage": "/images/previews/vayne.png",
+    "image": "/images/previews/orbitalis.jpg",
+    "mobileImage": "/images/previews/orbitalis.jpg",
     "category": [
-      "E-Commerce",
-      "Fashion Design",
-      "Digital Retail",
-      "Brand Identity"
+      "Aerospace",
+      "Interactive Experience",
+      "3D Web",
+      "Telemetry UI"
     ],
-    "slug": "vayne",
+    "slug": "orbitalis",
     "buttonText": "View Live",
-    "buttonUrl": "https://vayne-store.vercel.app/",
+    "buttonUrl": "https://orbitalis-space.vercel.app/",
     "tabs": [
       {
         "id": "challenge",
         "label": "The challenge",
-        "content": "Vayne needed an avant-garde digital storefront conveying modern minimalism while ensuring seamless conversion funnels."
+        "content": "Presenting complex astronomical data and orbital trajectories in an immersive, dark-mode cosmic aesthetic."
       },
       {
         "id": "approach",
         "label": "Approach",
-        "content": "We designed a high-contrast editorial interface emphasizing garment textures, micro-interactions, and instant checkout flow."
+        "content": "We developed interactive 3D particle constellations, HUD overlays, and precise mission timeline tracking."
       },
       {
         "id": "outcome",
         "label": "Outcome",
-        "content": "A high-conversion fashion experience establishing Vayne as a premier contemporary label in digital commerce."
+        "content": "An awe-inspiring web experience celebrated across design communities for its futuristic polish."
       },
       {
         "id": "wedid",
         "label": "What we did",
-        "content": "<ul><li>Editorial e-commerce design</li><li>Product interaction architecture</li><li>Mobile-first cart & checkout</li><li>Dynamic lookbook storytelling</li></ul>"
+        "content": "<ul><li>3D WebGL space environment</li><li>Mission telemetry dashboard</li><li>Futuristic typography system</li><li>Sound design & atmosphere</li></ul>"
       }
     ],
     "content": [
       {
-        "image": "/images/previews/vayne.png",
+        "image": "/images/previews/orbitalis.jpg",
         "layout": "single"
       }
     ]
@@ -426,45 +426,45 @@ module.exports = [
     "visibleInHome": true,
     "pos": "right",
     "size": "medium",
-    "title": "Orbitalis",
-    "subTitle": "Futuristic space exploration initiative and aerospace telemetry digital interface.",
+    "title": "Vayne",
+    "subTitle": "Contemporary fashion e-commerce storefront with high-end editorial aesthetics.",
     "year": "2025",
-    "image": "/images/previews/orbitalis.jpg",
-    "mobileImage": "/images/previews/orbitalis.jpg",
+    "image": "/images/previews/vayne.png",
+    "mobileImage": "/images/previews/vayne.png",
     "category": [
-      "Aerospace",
-      "Interactive Experience",
-      "3D Web",
-      "Telemetry UI"
+      "E-Commerce",
+      "Fashion Design",
+      "Digital Retail",
+      "Brand Identity"
     ],
-    "slug": "orbitalis",
+    "slug": "vayne",
     "buttonText": "View Live",
-    "buttonUrl": "https://orbitalis-space.vercel.app/",
+    "buttonUrl": "https://vayne-store.vercel.app/",
     "tabs": [
       {
         "id": "challenge",
         "label": "The challenge",
-        "content": "Presenting complex astronomical data and orbital trajectories in an immersive, dark-mode cosmic aesthetic."
+        "content": "Vayne needed an avant-garde digital storefront conveying modern minimalism while ensuring seamless conversion funnels."
       },
       {
         "id": "approach",
         "label": "Approach",
-        "content": "We developed interactive 3D particle constellations, HUD overlays, and precise mission timeline tracking."
+        "content": "We designed a high-contrast editorial interface emphasizing garment textures, micro-interactions, and instant checkout flow."
       },
       {
         "id": "outcome",
         "label": "Outcome",
-        "content": "An awe-inspiring web experience celebrated across design communities for its futuristic polish."
+        "content": "A high-conversion fashion experience establishing Vayne as a premier contemporary label in digital commerce."
       },
       {
         "id": "wedid",
         "label": "What we did",
-        "content": "<ul><li>3D WebGL space environment</li><li>Mission telemetry dashboard</li><li>Futuristic typography system</li><li>Sound design & atmosphere</li></ul>"
+        "content": "<ul><li>Editorial e-commerce design</li><li>Product interaction architecture</li><li>Mobile-first cart & checkout</li><li>Dynamic lookbook storytelling</li></ul>"
       }
     ],
     "content": [
       {
-        "image": "/images/previews/orbitalis.jpg",
+        "image": "/images/previews/vayne.png",
         "layout": "single"
       }
     ]

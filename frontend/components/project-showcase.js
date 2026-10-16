@@ -276,8 +276,9 @@
               function I(e) {
                   return Array.from({ length: 28 }, (t, o) => {
                     let r = 3.14159 * o + 1.618;
-                    let y = 475 - (o + 0.5) * (400 / 28);
-                    let h = 400 / 28 + 2;
+                    let step = 425 / 27;
+                    let y = 490 - o * step;
+                    let h = step + 8;
                     return {
                       path: B(y, r),
                       delay: 0.026 * o,
@@ -1766,15 +1767,7 @@
                   (eh = document.querySelector("#spark-webgl-canvas")),
                   es && eh)
                 ) {
-                  (es.parentNode !== document.body &&
-                    ((tl = es.parentNode),
-                    (ta = es.nextSibling),
-                    document.body.appendChild(es)),
-                    eh.parentNode !== document.body &&
-                      ((ts = eh.parentNode),
-                      (tc = eh.nextSibling),
-                      document.body.appendChild(eh)),
-                    em ||
+                  (em ||
                       ((em = new f.WebGLRenderer({
                         canvas: eh,
                         antialias: !0,
@@ -2009,7 +2002,7 @@
               (0, t.jsx)("div", { id: "header-dot" }),
               (0, t.jsx)("div", {
                 id: "page-header",
-                className: "relative",
+                className: "relative z-10",
                 children: (0, t.jsxs)("div", {
                   id: "page-header-pin",
                   className:
@@ -2037,7 +2030,7 @@
                     }),
                     (0, t.jsxs)("div", {
                       className:
-                        "tr__container w-full flex flex-col items-center",
+                        "tr__container w-full flex flex-col items-center relative z-10",
                       children: [
                         (0, t.jsx)("div", {
                           id: "logo-circle",
@@ -2099,14 +2092,14 @@
                                       children: (0, t.jsx)("path", {
                                         fillRule: "evenodd",
                                         clipRule: "evenodd",
-                                        d: "M458.25 82.06L453.73 81.31L265.43 243.24L265.43 250.77L304.6 287.68L310.62 288.43L459.75 159.64L460.51 85.07Z",
+                                        d: "M530.23 79.8L525.72 81.31L286.96 307.26L287.71 313.28L343.45 361.49L349.47 362.99L454.92 246.0L535.51 170.6L534.75 83.57Z",
                                       }),
                                     }),
                                   }),
                                   (0, t.jsx)("path", {
                                     fillRule: "evenodd",
                                     clipRule: "evenodd",
-                                    d: "M458.25 82.06L453.73 81.31L265.43 243.24L265.43 250.77L304.6 287.68L310.62 288.43L459.75 159.64L460.51 85.07Z",
+                                    d: "M530.23 79.8L525.72 81.31L286.96 307.26L287.71 313.28L343.45 361.49L349.47 362.99L454.92 246.0L535.51 170.6L534.75 83.57Z",
                                     fill: "none",
                                     stroke: "#E5A83B",
                                     strokeWidth: "1.5",
@@ -2136,14 +2129,14 @@
                                       children: (0, t.jsx)("path", {
                                         fillRule: "evenodd",
                                         clipRule: "evenodd",
-                                        d: "M453.73 191.27L360.33 271.86L358.83 274.87L358.83 408.18L364.85 415.72L452.22 494.8L457.49 494.8L460.51 490.28L460.51 194.28L457.49 191.27Z",
+                                        d: "M535.51 194.6L454.92 270.0L456.42 409.69L490.32 439.82L528.73 470.7L532.49 469.95L534.75 466.93L535.51 456.39L535.51 194.6Z",
                                       }),
                                     }),
                                   }),
                                   (0, t.jsx)("path", {
                                     fillRule: "evenodd",
                                     clipRule: "evenodd",
-                                    d: "M453.73 191.27L360.33 271.86L358.83 274.87L358.83 408.18L364.85 415.72L452.22 494.8L457.49 494.8L460.51 490.28L460.51 194.28L457.49 191.27Z",
+                                    d: "M535.51 194.6L454.92 270.0L456.42 409.69L490.32 439.82L528.73 470.7L532.49 469.95L534.75 466.93L535.51 456.39L535.51 194.6Z",
                                     fill: "none",
                                     stroke: "#E5A83B",
                                     strokeWidth: "1.5",
@@ -2167,7 +2160,7 @@
                           text: "Beyond Ordinary",
                           animationType: "chars",
                           stagger: 0.08,
-                          className: "z-2 mb-6",
+                          className: "relative z-10 mb-6",
                           once: !0,
                         }),
                         (0, t.jsx)("div", {
@@ -2176,7 +2169,7 @@
                             "absolute w-0 h-0 top-1/2 left-1/2 pointer-events-none invisible",
                         }),
                         (0, t.jsxs)(s.FadeInOnScroll, {
-                          className: "small",
+                          className: "small relative z-10",
                           delay: 0.5,
                           children: [
                             "Distinctive brands, intelligent software, ",
@@ -2197,12 +2190,12 @@
               (0, t.jsx)("canvas", {
                 id: "line-canvas",
                 className:
-                  "fixed top-0 left-0 pointer-events-none z-2 will-change-contents",
+                  "fixed top-0 left-0 pointer-events-none z-1 will-change-contents",
               }),
               (0, t.jsx)("canvas", {
                 id: "spark-webgl-canvas",
                 className:
-                  "fixed top-0 left-0 pointer-events-none z-3 will-change-contents",
+                  "fixed top-0 left-0 pointer-events-none z-2 will-change-contents",
               }),
               (0, t.jsx)("main", {
                 id: "projects-grid",

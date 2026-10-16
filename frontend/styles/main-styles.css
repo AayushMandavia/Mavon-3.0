@@ -5966,3 +5966,27 @@ html.lenis body {
 .familjen_9a4def3-module__XsJOBW__variable {
   --font-familjen: "familjen", "familjen Fallback";
 }
+
+/* Ensure hero typography and elements stay in front of background lines and sparks */
+#page-header {
+  position: relative;
+  z-index: 10;
+}
+#page-header .tr__container {
+  position: relative;
+  z-index: 10;
+}
+#page-header h1 {
+  position: relative;
+  z-index: 10;
+}
+#page-header .small {
+  position: relative;
+  z-index: 10;
+}
+#line-canvas {
+  z-index: 1 !important;
+}
+#spark-webgl-canvas {
+  z-index: 2 !important;
+}
