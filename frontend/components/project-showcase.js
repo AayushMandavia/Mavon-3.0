@@ -274,22 +274,22 @@
                 return i;
               }
               function I(e) {
-                  return Array.from({ length: 28 }, (t, o) => {
-                    let r = 3.14159 * o + 1.618;
-                    let step = 425 / 27;
-                    let y = 490 - o * step;
-                    let h = step + 8;
-                    return {
-                      path: B(y, r),
-                      delay: 0.026 * o,
-                      fillX: -10,
-                      fillY: y,
-                      fillW: 600,
-                      fillH: h,
-                      axis: "h",
-                    };
-                  });
-                }
+                return Array.from({ length: 28 }, (t, o) => {
+                  let r = 3.14159 * o + 1.618;
+                  let step = 420 / 27;
+                  let y = 452 - o * step;
+                  let h = step + 18;
+                  return {
+                    path: B(Math.max(60, y + 10), r),
+                    delay: 0.026 * o,
+                    fillX: -10,
+                    fillY: y,
+                    fillW: 600,
+                    fillH: h,
+                    axis: "h",
+                  };
+                });
+              }
               function V() {
                 let e = z();
                 return e.t1 && e.t2 && e.t3
@@ -331,6 +331,8 @@
                     i += `<path d="${e.path}" fill="none" stroke="${sc}" stroke-width="1.5" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${o}" opacity="${s.toFixed(3)}"/>`;
                   }
                 }),
+                  n >= 0.8 &&
+                    (l += `<rect x="-10" y="-10" width="600" height="600" fill="${c}" opacity="${Math.min(1, (n - 0.8) / 0.15).toFixed(3)}"/>`),
                   (t.innerHTML = l),
                   (e.innerHTML = i));
               }
