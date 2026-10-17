@@ -323,7 +323,7 @@
                   let o = a(r((n - e.delay) / 0.252));
                   o > 0 &&
                     ("h" === e.axis
-                      ? (l += `<rect x="${e.fillX}" y="${e.fillY.toFixed(1)}" width="${e.fillW}" height="${(e.fillH * o + 2).toFixed(1)}" fill="${c}"/>`)
+                      ? (l += `<rect x="${e.fillX}" y="${e.fillY.toFixed(1)}" width="${e.fillW}" height="${(Math.max(485 - e.fillY + 2, e.fillH * o + 2)).toFixed(1)}" fill="${c}" opacity="${o.toFixed(3)}"/>`)
                       : (l += `<rect x="${e.fillX.toFixed(1)}" y="-10" width="${(e.fillW * o + 2).toFixed(1)}" height="610" fill="${c}"/>`));
                   let s = Math.max(0, 1 - a(r((n - e.delay) / 0.396)));
                   if (s > 0.01) {
