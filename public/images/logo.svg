@@ -1,12 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="134" height="25" viewBox="0 0 134 25" fill="none">
+  <style>
+    .logo-left-wing { fill: #FFFFFF; }
+    .logo-gold { fill: #E5A83B; }
+    .logo-text { fill: #FFFFFF; }
+    @media (prefers-color-scheme: light) {
+      .logo-left-wing { fill: #034831; }
+      .logo-text { fill: #040508; }
+    }
+  </style>
   <!-- M Icon Mark (Symmetrical) -->
   <svg x="1" y="1.5" width="23" height="22" viewBox="0 0 578 586" fill="none">
-    <path d="M43 79.11L46.78 72.5L52.44 69.66L59.05 71.55L338.58 351.08L276.25 413.41L128 265.16L128 451.18L52.44 516.34L46.78 513.5L43 506.89Z" fill="#FFFFFF"/>
-    <path d="M535 79.11L531.22 72.5L525.56 69.66L518.95 71.55L303.64 286.86L356.52 339.74L450 246.26L535 161.26Z" fill="#E5A83B"/>
-    <path d="M535 201.26L450 286.26L450 451.18L525.56 516.34L531.22 513.5L535 506.89Z" fill="#E5A83B"/>
+    <path class="logo-left-wing" d="M43 79.11L46.78 72.5L52.44 69.66L59.05 71.55L338.58 351.08L276.25 413.41L128 265.16L128 451.18L52.44 516.34L46.78 513.5L43 506.89Z" fill="#FFFFFF"/>
+    <path class="logo-gold" d="M535 79.11L531.22 72.5L525.56 69.66L518.95 71.55L303.64 286.86L356.52 339.74L450 246.26L535 161.26Z" fill="#E5A83B"/>
+    <path class="logo-gold" d="M535 201.26L450 286.26L450 451.18L525.56 516.34L531.22 513.5L535 506.89Z" fill="#E5A83B"/>
   </svg>
   <!-- MAVON Wordmark -->
-  <g fill="#fff" transform="translate(28, 0)">
+  <g class="logo-text" fill="#fff" transform="translate(28, 0)">
     <!-- M -->
     <path d="M4 19V5h3.4l4.6 7.5L16.6 5H20v14h-3V9.2l-4.1 6.8h-1.8L7 9.2V19H4z"/>
     <!-- A -->

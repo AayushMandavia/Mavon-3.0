@@ -7,6 +7,44 @@
   --pl-mono: "Space Mono", monospace;
   --pl-display: "Bebas Neue", sans-serif;
 }
+@media (prefers-color-scheme: light) {
+  :root:not(.theme-dark):not(.dark) {
+    --pl-black: #fff;
+    --pl-white: #040508;
+    --pl-panel-gray: #f8f9fa;
+    --pl-line-gray: #e5e7eb;
+  }
+}
+.theme-light {
+  --pl-black: #fff;
+  --pl-white: #040508;
+  --pl-panel-gray: #f8f9fa;
+  --pl-line-gray: #e5e7eb;
+}
+@media (prefers-color-scheme: light) {
+  :root:not(.theme-dark):not(.dark) .pl-t-path:nth-of-type(1) path,
+  :root:not(.theme-dark):not(.dark) svg.pl-t-path:first-of-type path {
+    stroke: #034831 !important;
+  }
+  :root:not(.theme-dark):not(.dark) .pl-tag-word,
+  :root:not(.theme-dark):not(.dark) .pl-slot-reel {
+    color: #040508 !important;
+  }
+  :root:not(.theme-dark):not(.dark) .pl-logo-black-box {
+    background: #f8f9fa !important;
+  }
+}
+.theme-light .pl-t-path:nth-of-type(1) path,
+.theme-light svg.pl-t-path:first-of-type path {
+  stroke: #034831 !important;
+}
+.theme-light .pl-tag-word,
+.theme-light .pl-slot-reel {
+  color: #040508 !important;
+}
+.theme-light .pl-logo-black-box {
+  background: #f8f9fa !important;
+}
 .pl-white-overlay {
   background: var(--pl-panel-gray);
   z-index: 9050;

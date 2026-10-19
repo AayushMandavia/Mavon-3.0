@@ -411,7 +411,15 @@
                           ((e.style.opacity = "1"),
                           (e.style.transform = "translate(0,0) scale(1)"));
                       }),
-                      G(o.lg1, o.pg1, O || I("t1-bottom-up"), e, "#FFFFFF", "#FFFFFF"),
+                      (() => {
+                        let isLight = typeof document !== "undefined" && (
+                          document.documentElement.classList.contains("theme-light") ||
+                          (!document.documentElement.classList.contains("theme-dark") && typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches)
+                        );
+                        let t1Fill = isLight ? "#034831" : "#FFFFFF";
+                        let t1Stroke = isLight ? "#04563b" : "#FFFFFF";
+                        G(o.lg1, o.pg1, O || I("t1-bottom-up"), e, t1Fill, t1Stroke);
+                      })(),
                       G(o.lg2, o.pg2, $ || I("t2-left-right"), e, "#E5A83B", "#FAD261"),
                       G(o.lg3, o.pg3, D || I("t3-top-down"), e, "#E5A83B", "#FAD261")));
                 }
@@ -1833,7 +1841,7 @@
               };
               function th() {
                 let e;
-                ((document.body.style.backgroundColor = "#040508"),
+                ((document.body.style.backgroundColor = ""),
                   V(),
                   c(),
                   J(0),
@@ -2066,9 +2074,10 @@
                                     clipRule: "evenodd",
                                     d: "M43 79.11L46.78 72.5L52.44 69.66L59.05 71.55L338.58 351.08L276.25 413.41L128 265.16L128 451.18L52.44 516.34L46.78 513.5L43 506.89Z",
                                     fill: "none",
-                                    stroke: "#FFFFFF",
+                                    stroke: "var(--logo-left-wing, #FFFFFF)",
                                     strokeWidth: "1.5",
                                     strokeOpacity: "0.85",
+                                    className: "logo-t1-outline",
                                   }),
                                   (0, t.jsx)("g", {
                                     clipPath: "url(#clip1)",

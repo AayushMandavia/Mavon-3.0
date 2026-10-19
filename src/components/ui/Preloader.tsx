@@ -74,7 +74,7 @@ export function Preloader() {
                 clipRule="evenodd"
                 d="M43 79.11L46.78 72.5L52.44 69.66L59.05 71.55L338.58 351.08L276.25 413.41L128 265.16L128 451.18L52.44 516.34L46.78 513.5L43 506.89Z"
                 fill="none"
-                stroke="#FFFFFF"
+                stroke="var(--logo-left-wing, #FFFFFF)"
                 strokeWidth="10"
               />
               <path
