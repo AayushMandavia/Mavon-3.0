@@ -72,7 +72,7 @@ export function Preloader() {
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
-                d="M47.77 79.8L43.25 83.57L42.49 456.39L43.25 466.93L45.51 469.95L49.27 470.7L87.68 439.82L121.58 409.69L123.08 262.07L228.53 362.99L234.55 361.49L290.29 313.28L291.04 307.26L95.97 121.22L52.28 81.31Z"
+                d="M43 79.11L46.78 72.5L52.44 69.66L59.05 71.55L338.58 351.08L276.25 413.41L128 265.16L128 451.18L52.44 516.34L46.78 513.5L43 506.89Z"
                 fill="none"
                 stroke="#FFFFFF"
                 strokeWidth="10"
@@ -80,7 +80,7 @@ export function Preloader() {
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
-                d="M530.23 79.8L525.72 81.31L286.96 307.26L287.71 313.28L343.45 361.49L349.47 362.99L454.92 246.0L535.51 170.6L534.75 83.57Z"
+                d="M535 79.11L531.22 72.5L525.56 69.66L518.95 71.55L303.64 286.86L356.52 339.74L450 246.26L535 161.26Z"
                 fill="none"
                 stroke="#E5A83B"
                 strokeWidth="10"
@@ -88,7 +88,7 @@ export function Preloader() {
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
-                d="M535.51 194.6L454.92 270.0L456.42 409.69L490.32 439.82L528.73 470.7L532.49 469.95L534.75 466.93L535.51 456.39L535.51 194.6Z"
+                d="M535 201.26L450 286.26L450 451.18L525.56 516.34L531.22 513.5L535 506.89Z"
                 fill="none"
                 stroke="#E5A83B"
                 strokeWidth="10"
