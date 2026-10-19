@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="134" height="25" viewBox="0 0 134 25" fill="none">
   <!-- M Icon Mark (Symmetrical) -->
-  <g stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M2.25 2.5L2.04 2.68L2 20.52L2.04 21.02L2.14 21.16L2.32 21.2L4.13 19.72L5.73 18.28L5.8 11.22L10.78 16.05L11.06 15.98L13.69 13.67L13.72 13.38L4.52 4.48L2.46 2.57Z" fill="#FFFFFF" stroke="#FFFFFF"/>
-    <path d="M25.01 2.5L24.79 2.57L13.53 13.38L13.57 13.67L16.2 15.98L16.48 16.05L21.45 10.45L25.26 6.84L25.22 2.68Z" fill="#E5A83B" stroke="#E5A83B"/>
-    <path d="M25.26 7.99L21.45 11.6L21.53 18.28L23.12 19.72L24.94 21.2L25.11 21.16L25.22 21.02L25.26 20.52L25.26 7.99Z" fill="#E5A83B" stroke="#E5A83B"/>
-  </g>
+  <svg x="1" y="1.5" width="23" height="22" viewBox="0 0 578 586" fill="none">
+    <path d="M43 79.11L46.78 72.5L52.44 69.66L59.05 71.55L338.58 351.08L276.25 413.41L128 265.16L128 451.18L52.44 516.34L46.78 513.5L43 506.89Z" fill="#FFFFFF"/>
+    <path d="M535 79.11L531.22 72.5L525.56 69.66L518.95 71.55L303.64 286.86L356.52 339.74L450 246.26L535 161.26Z" fill="#E5A83B"/>
+    <path d="M535 201.26L450 286.26L450 451.18L525.56 516.34L531.22 513.5L535 506.89Z" fill="#E5A83B"/>
+  </svg>
   <!-- MAVON Wordmark -->
   <g fill="#fff" transform="translate(28, 0)">
     <!-- M -->
