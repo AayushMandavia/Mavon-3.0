@@ -5990,3 +5990,17 @@ html.lenis body {
 #spark-webgl-canvas {
   z-index: 2 !important;
 }
+
+
+/* Persistent Opaque Header Matching SS2 */
+.site-header,
+#nav {
+  background-color: #040508 !important;
+  mix-blend-mode: normal !important;
+  isolation: isolate;
+  z-index: 99 !important;
+}
+
+.site-header .main-toggle {
+  background-color: #040508 !important;
+}

@@ -72,6 +72,80 @@
         children: e ? (0, t.jsx)(h, {}) : (0, t.jsx)(p, {}),
       });
     }
+    
+    function _themeToggle() {
+      let [isLight, setIsLight] = (0, r.useState)(() => {
+        if (typeof document === "undefined") return false;
+        return document.documentElement.classList.contains("theme-light");
+      });
+
+      (0, r.useEffect)(() => {
+        let handler = (ev) => {
+          setIsLight(ev.detail?.isLight ?? document.documentElement.classList.contains("theme-light"));
+        };
+        window.addEventListener("mavon-theme-change", handler);
+        return () => {
+          window.removeEventListener("mavon-theme-change", handler);
+        };
+      }, []);
+
+      let toggle = () => {
+        let next = !isLight;
+        setIsLight(next);
+        document.documentElement.classList.toggle("theme-light", next);
+        document.documentElement.classList.toggle("theme-dark", !next);
+        document.body.classList.toggle("theme-light", next);
+        document.body.classList.toggle("theme-dark", !next);
+        window.dispatchEvent(new CustomEvent("mavon-theme-change", { detail: { isLight: next } }));
+      };
+
+      return (0, t.jsx)("button", {
+        type: "button",
+        id: "theme-toggle",
+        onClick: toggle,
+        title: isLight ? "Switch to Dark Mode" : "Switch to Light Mode",
+        "aria-label": isLight ? "Switch to Dark Mode" : "Switch to Light Mode",
+        className:
+          "flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center bg-[#D9D9D9]/10 transition-all hover:bg-[#D9D9D9]/20 text-white rounded-full z-30 ease-in-out duration-500",
+        suppressHydrationWarning: !0,
+        children: isLight
+          ? (0, t.jsx)("svg", {
+              width: "15",
+              height: "15",
+              viewBox: "0 0 24 24",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "2",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              className: "w-3.5 h-3.5 text-white",
+              children: (0, t.jsx)("path", { d: "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" })
+            })
+          : (0, t.jsxs)("svg", {
+              width: "15",
+              height: "15",
+              viewBox: "0 0 24 24",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "2",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              className: "w-3.5 h-3.5 text-white",
+              children: [
+                (0, t.jsx)("circle", { cx: "12", cy: "12", r: "5" }),
+                (0, t.jsx)("line", { x1: "12", y1: "1", x2: "12", y2: "3" }),
+                (0, t.jsx)("line", { x1: "12", y1: "21", x2: "12", y2: "23" }),
+                (0, t.jsx)("line", { x1: "4.22", y1: "4.22", x2: "5.64", y2: "5.64" }),
+                (0, t.jsx)("line", { x1: "18.36", y1: "18.36", x2: "19.78", y2: "19.78" }),
+                (0, t.jsx)("line", { x1: "1", y1: "12", x2: "3", y2: "12" }),
+                (0, t.jsx)("line", { x1: "21", y1: "12", x2: "23", y2: "12" }),
+                (0, t.jsx)("line", { x1: "4.22", y1: "19.78", x2: "5.64", y2: "18.36" }),
+                (0, t.jsx)("line", { x1: "18.36", y1: "5.64", x2: "19.78", y2: "4.22" })
+              ]
+            })
+      });
+    }
+  
     function h() {
       return (0, t.jsxs)("svg", {
         width: "16",
@@ -752,7 +826,7 @@
                   (0, t.jsx)("header", {
                     id: "nav",
                     className:
-                      "site-header fixed top-0 left-0 w-full z-99 flex justify-between items-center py-6 md:py-10 transition-all duration-300 ease-in-out mix-blend-difference",
+                      "site-header fixed top-0 left-0 w-full z-99 flex justify-between items-center py-6 md:py-10 transition-all duration-300 ease-in-out bg-[#040508]",
                     children: (0, t.jsxs)("div", {
                       className:
                         "tr__container w-full flex items-center justify-between px-4 md:px-8 mx-auto",
@@ -801,7 +875,7 @@
                               className: "hidden md:block",
                               children: (0, t.jsxs)("div", {
                                 className:
-                                  "main-toggle relative title flex items-center cursor-pointer z-50 pt-1.5 pb-2 px-4 rounded-full border transition-all duration-300 border-white hover:border-white/60 group",
+                                  "main-toggle relative title flex items-center cursor-pointer z-50 pt-1.5 pb-2 px-4 rounded-full border transition-all duration-300 border-white hover:border-white/60 group bg-[#040508]",
                                 onClick: L,
                                 children: [
                                   (0, t.jsx)("span", {
